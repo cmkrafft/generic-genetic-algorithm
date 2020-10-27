@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.16)
+project(GeneticAlgorithm)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_FLAGS -g)
+
+add_executable(GeneticAlgorithm main.cpp Chromosome.cpp Chromosome.h Population.cpp Population.h utils/RandomNumberGenerator.cpp utils/RandomNumberGenerator.h configuration/Configuration.cpp configuration/Configuration.h configuration/crossover/AbstractCrossoverConfiguration.cpp configuration/crossover/AbstractCrossoverConfiguration.h configuration/crossover/singlepoint/SinglePointCrossoverConfiguration.cpp configuration/crossover/singlepoint/SinglePointCrossoverConfiguration.h configuration/crossover/singlepoint/mode/AbstractSinglePointCrossoverConfigurationMode.cpp configuration/crossover/singlepoint/mode/AbstractSinglePointCrossoverConfigurationMode.h configuration/crossover/singlepoint/mode/FixedMode.cpp configuration/crossover/singlepoint/mode/FixedMode.h configuration/crossover/singlepoint/mode/RandomMode.cpp configuration/crossover/singlepoint/mode/RandomMode.h configuration/crossover/uniform/UniformCrossoverConfiguration.cpp configuration/crossover/uniform/UniformCrossoverConfiguration.h configuration/mutation/MutationConfiguration.cpp configuration/mutation/MutationConfiguration.h configuration/selection/AbstractSelectionConfiguration.cpp configuration/selection/AbstractSelectionConfiguration.h configuration/selection/proportionate/ProportionateSelectionConfiguration.cpp configuration/selection/proportionate/ProportionateSelectionConfiguration.h configuration/selection/tournament/TournamentSelectionConfiguration.cpp configuration/selection/tournament/TournamentSelectionConfiguration.h)
+
+find_package(OpenMP REQUIRED)
+target_link_libraries(GeneticAlgorithm PRIVATE OpenMP::OpenMP_CXX)
