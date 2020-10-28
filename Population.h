@@ -20,7 +20,7 @@ template<typename T>
 class Population {
 
 public:
-    Population(const Configuration<T> *configuration) {
+    explicit Population(const Configuration<T> *configuration) {
         this->configuration = configuration;
         this->rnd = new RandomNumberGenerator();
 
@@ -163,7 +163,7 @@ private:
     RandomNumberGenerator *rnd{};
     const Configuration<T> *configuration;
 
-    unsigned long current_generation;
+    unsigned long current_generation{};
 
     std::vector<std::pair<Chromosome<T> *, double> *> *
             current_scores;
@@ -259,6 +259,9 @@ private:
             }
             case (TOURNAMENT_SELECTION): {
                 return this->perform_tournament_selection();
+            }
+            default: {
+                return nullptr;
             }
         }
     }

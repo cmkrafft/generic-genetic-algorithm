@@ -112,11 +112,11 @@ public:
     }
 
 private:
-    Selection selection;
-    Crossover crossover;
+    Selection selection{};
+    Crossover crossover{};
 
-    unsigned long n_population;
-    unsigned long n_chromosome;
+    unsigned long n_population{};
+    unsigned long n_chromosome{};
 
     const AbstractSelectionConfiguration *selection_configuration{};
     const AbstractCrossoverConfiguration *crossover_configuration{};
