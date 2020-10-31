@@ -126,15 +126,15 @@ public:
      * Get chromosome with highest score from current generation
      * @return Best fit
      */
-    Chromosome<T> *get_best() const {
-        return this->current_scores->at(
+    const Chromosome<T> *get_best() const {
+        return const_cast<Chromosome<T> *>(this->current_scores->at(
                 std::distance(this->current_scores->begin(),
                               std::max_element(this->current_scores->begin(),
                                                this->current_scores->end(),
                                                [](const std::pair<Chromosome<T> *, double> *l,
                                                   const std::pair<Chromosome<T> *, double> *r) {
                                                    return l->second < r->second;
-                                               })))->first;
+                                               })))->first);
     }
 
     /**
