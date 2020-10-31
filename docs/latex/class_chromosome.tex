@@ -1,0 +1,129 @@
+\hypertarget{class_chromosome}{}\doxysection{Chromosome$<$ T $>$ Class Template Reference}
+\label{class_chromosome}\index{Chromosome$<$ T $>$@{Chromosome$<$ T $>$}}
+
+
+{\ttfamily \#include $<$Chromosome.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_chromosome_a38749677271493d4a2f9df5734646b14}{Chromosome}} (const std\+::vector$<$ T $\ast$ $>$ $\ast$genes, double($\ast$\mbox{\hyperlink{class_chromosome_a7bd89ef1dab52a5fb27402f86c1c008c}{fitness\+\_\+function}})(const std\+::vector$<$ T $\ast$ $>$ $\ast$), std\+::string($\ast$\mbox{\hyperlink{class_chromosome_ac3987db8627c0ac69014bd3c38ede765}{to\+\_\+string}})(const T $\ast$v))
+\item 
+const std\+::vector$<$ T $\ast$ $>$ $\ast$ \mbox{\hyperlink{class_chromosome_a1304a510e1d4ca037822205eb3446894}{get\+\_\+genes}} () const
+\item 
+double \mbox{\hyperlink{class_chromosome_a11282fec37bdcb39cfcad7214acfd96a}{get\+\_\+fitness}} () const
+\item 
+std\+::string \mbox{\hyperlink{class_chromosome_ac3987db8627c0ac69014bd3c38ede765}{to\+\_\+string}} () const
+\item 
+void \mbox{\hyperlink{class_chromosome_a4bd7d77f64d243c4cbd4ebde8236d09d}{print}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double($\ast$ \mbox{\hyperlink{class_chromosome_a7bd89ef1dab52a5fb27402f86c1c008c}{fitness\+\_\+function}} )(const std\+::vector$<$ T $\ast$ $>$ $\ast$)
+\item 
+std\+::string($\ast$ \mbox{\hyperlink{class_chromosome_af6be406d01b92574f46cc7b1f85b87c2}{to\+\_\+string\+\_\+function}} )(const T $\ast$v)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class Chromosome$<$ T $>$}
+
+Generic representation of a \mbox{\hyperlink{class_chromosome}{Chromosome}}. Consisting of n elements, so called \char`\"{}genes\char`\"{}. 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of an allele \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_chromosome_a38749677271493d4a2f9df5734646b14}\label{class_chromosome_a38749677271493d4a2f9df5734646b14}} 
+\index{Chromosome$<$ T $>$@{Chromosome$<$ T $>$}!Chromosome@{Chromosome}}
+\index{Chromosome@{Chromosome}!Chromosome$<$ T $>$@{Chromosome$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Chromosome()}{Chromosome()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{class_chromosome}{Chromosome}}$<$ T $>$\+::\mbox{\hyperlink{class_chromosome}{Chromosome}} (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $\ast$ $>$ $\ast$}]{genes,  }\item[{double($\ast$)(const std\+::vector$<$ T $\ast$ $>$ $\ast$)}]{fitness\+\_\+function,  }\item[{std\+::string($\ast$)(const T $\ast$v)}]{to\+\_\+string }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Generate new instance of \mbox{\hyperlink{class_chromosome}{Chromosome}} for given data type 
+\begin{DoxyParams}{Parameters}
+{\em genes} & Representation of genes of given type \\
+\hline
+{\em fitness\+\_\+function} & Function pointer to fitness function. Used to determine chromosome\textquotesingle{}s fitness. \\
+\hline
+{\em to\+\_\+string} & Function pointer to to\+\_\+string function. Used to serialize chromosome, e.\+g. when calling print. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_chromosome_a11282fec37bdcb39cfcad7214acfd96a}\label{class_chromosome_a11282fec37bdcb39cfcad7214acfd96a}} 
+\index{Chromosome$<$ T $>$@{Chromosome$<$ T $>$}!get\_fitness@{get\_fitness}}
+\index{get\_fitness@{get\_fitness}!Chromosome$<$ T $>$@{Chromosome$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{get\_fitness()}{get\_fitness()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+double \mbox{\hyperlink{class_chromosome}{Chromosome}}$<$ T $>$\+::get\+\_\+fitness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get current chromosome\textquotesingle{}s fitness based on fitness\+\_\+function \begin{DoxyReturn}{Returns}
+Fitness value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chromosome_a1304a510e1d4ca037822205eb3446894}\label{class_chromosome_a1304a510e1d4ca037822205eb3446894}} 
+\index{Chromosome$<$ T $>$@{Chromosome$<$ T $>$}!get\_genes@{get\_genes}}
+\index{get\_genes@{get\_genes}!Chromosome$<$ T $>$@{Chromosome$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{get\_genes()}{get\_genes()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const std\+::vector$<$T $\ast$$>$$\ast$ \mbox{\hyperlink{class_chromosome}{Chromosome}}$<$ T $>$\+::get\+\_\+genes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get current chromosome representation \begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_chromosome}{Chromosome}} vector 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chromosome_a4bd7d77f64d243c4cbd4ebde8236d09d}\label{class_chromosome_a4bd7d77f64d243c4cbd4ebde8236d09d}} 
+\index{Chromosome$<$ T $>$@{Chromosome$<$ T $>$}!print@{print}}
+\index{print@{print}!Chromosome$<$ T $>$@{Chromosome$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \mbox{\hyperlink{class_chromosome}{Chromosome}}$<$ T $>$\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Print current chromosome\textquotesingle{}s values using to\+\_\+string function for serialization \mbox{\Hypertarget{class_chromosome_ac3987db8627c0ac69014bd3c38ede765}\label{class_chromosome_ac3987db8627c0ac69014bd3c38ede765}} 
+\index{Chromosome$<$ T $>$@{Chromosome$<$ T $>$}!to\_string@{to\_string}}
+\index{to\_string@{to\_string}!Chromosome$<$ T $>$@{Chromosome$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{to\_string()}{to\_string()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string \mbox{\hyperlink{class_chromosome}{Chromosome}}$<$ T $>$\+::to\+\_\+string (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get string representation of chromosome \begin{DoxyReturn}{Returns}
+String representation 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_chromosome_a7bd89ef1dab52a5fb27402f86c1c008c}\label{class_chromosome_a7bd89ef1dab52a5fb27402f86c1c008c}} 
+\index{Chromosome$<$ T $>$@{Chromosome$<$ T $>$}!fitness\_function@{fitness\_function}}
+\index{fitness\_function@{fitness\_function}!Chromosome$<$ T $>$@{Chromosome$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{fitness\_function}{fitness\_function}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+double($\ast$ \mbox{\hyperlink{class_chromosome}{Chromosome}}$<$ T $>$\+::fitness\+\_\+function) (const std\+::vector$<$ T $\ast$ $>$ $\ast$)}
+
+Function pointer to chromosome\textquotesingle{}s fitness function \begin{DoxyReturn}{Returns}
+Fitness value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_chromosome_af6be406d01b92574f46cc7b1f85b87c2}\label{class_chromosome_af6be406d01b92574f46cc7b1f85b87c2}} 
+\index{Chromosome$<$ T $>$@{Chromosome$<$ T $>$}!to\_string\_function@{to\_string\_function}}
+\index{to\_string\_function@{to\_string\_function}!Chromosome$<$ T $>$@{Chromosome$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{to\_string\_function}{to\_string\_function}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string($\ast$ \mbox{\hyperlink{class_chromosome}{Chromosome}}$<$ T $>$\+::to\+\_\+string\+\_\+function) (const T $\ast$v)}
+
+Function pointer to to\+\_\+string function 
+\begin{DoxyParams}{Parameters}
+{\em v} & Value to be serialized \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String representation 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/geneticalgorithm/Chromosome.\+h\end{DoxyCompactItemize}

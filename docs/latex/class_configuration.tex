@@ -1,0 +1,190 @@
+\hypertarget{class_configuration}{}\doxysection{Configuration$<$ T $>$ Class Template Reference}
+\label{class_configuration}\index{Configuration$<$ T $>$@{Configuration$<$ T $>$}}
+
+
+{\ttfamily \#include $<$Configuration.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_configuration_a27295617fb9735a757d7b65c6902fdf9}{Configuration}} (double($\ast$\mbox{\hyperlink{class_configuration_a254d5aeff08c48fa2f88e4b5208834d9}{fitness\+\_\+function}})(const std\+::vector$<$ T $\ast$ $>$ $\ast$), const std\+::vector$<$ T $\ast$ $>$ $\ast$alleles, unsigned long n\+\_\+population, unsigned long n\+\_\+chromosome, const \mbox{\hyperlink{class_abstract_selection_configuration}{Abstract\+Selection\+Configuration}} $\ast$abstract\+\_\+selection\+\_\+configuration, const \mbox{\hyperlink{class_abstract_crossover_configuration}{Abstract\+Crossover\+Configuration}} $\ast$abstract\+\_\+crossover\+\_\+configuration, const \mbox{\hyperlink{class_mutation_configuration}{Mutation\+Configuration}} $\ast$mutation\+\_\+configuration, std\+::string($\ast$\mbox{\hyperlink{class_configuration_a7773ea40d9af80d2399f30822a164201}{to\+\_\+string}})(const T $\ast$))
+\item 
+Selection \mbox{\hyperlink{class_configuration_a44fea71c7d5e6399a64aa3fc27979ddd}{get\+\_\+selection\+\_\+type}} () const
+\item 
+Crossover \mbox{\hyperlink{class_configuration_a33fa9513147023119078a8fc5690cedb}{get\+\_\+crossover\+\_\+type}} () const
+\item 
+const \mbox{\hyperlink{class_abstract_selection_configuration}{Abstract\+Selection\+Configuration}} $\ast$ \mbox{\hyperlink{class_configuration_a33c3029765d4d8d4a107ba7d72496b36}{get\+\_\+selection\+\_\+configuration}} () const
+\item 
+const \mbox{\hyperlink{class_abstract_crossover_configuration}{Abstract\+Crossover\+Configuration}} $\ast$ \mbox{\hyperlink{class_configuration_ab002e077b6ce3d8fe5c5d08e5ba511ae}{get\+\_\+crossover\+\_\+configuration}} () const
+\item 
+const \mbox{\hyperlink{class_mutation_configuration}{Mutation\+Configuration}} $\ast$ \mbox{\hyperlink{class_configuration_a4727e1ee69043421d2e4eba5149302c2}{get\+\_\+mutation\+\_\+configuration}} () const
+\item 
+const std\+::vector$<$ T $\ast$ $>$ $\ast$ \mbox{\hyperlink{class_configuration_a904e1811a3d0f0a33ebc98a07855d550}{get\+\_\+alleles}} () const
+\item 
+unsigned long \mbox{\hyperlink{class_configuration_ad9f57884c7aa945aab147a377dff6e95}{get\+\_\+population\+\_\+size}} () const
+\item 
+unsigned long \mbox{\hyperlink{class_configuration_afdf2a53c5cd7c27f54fb51aa4689172b}{get\+\_\+chromosome\+\_\+size}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double($\ast$ \mbox{\hyperlink{class_configuration_a254d5aeff08c48fa2f88e4b5208834d9}{fitness\+\_\+function}} )(const std\+::vector$<$ T $\ast$ $>$ $\ast$)
+\item 
+std\+::string($\ast$ \mbox{\hyperlink{class_configuration_a7773ea40d9af80d2399f30822a164201}{to\+\_\+string}} )(const T $\ast$v)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+class Configuration$<$ T $>$}
+
+\mbox{\hyperlink{class_configuration}{Configuration}} defining population size, selection and mutation methods, fitness function and more 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of chromosome\textquotesingle{}s allele \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_configuration_a27295617fb9735a757d7b65c6902fdf9}\label{class_configuration_a27295617fb9735a757d7b65c6902fdf9}} 
+\index{Configuration$<$ T $>$@{Configuration$<$ T $>$}!Configuration@{Configuration}}
+\index{Configuration@{Configuration}!Configuration$<$ T $>$@{Configuration$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Configuration()}{Configuration()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{class_configuration}{Configuration}}$<$ T $>$\+::\mbox{\hyperlink{class_configuration}{Configuration}} (\begin{DoxyParamCaption}\item[{double($\ast$)(const std\+::vector$<$ T $\ast$ $>$ $\ast$)}]{fitness\+\_\+function,  }\item[{const std\+::vector$<$ T $\ast$ $>$ $\ast$}]{alleles,  }\item[{unsigned long}]{n\+\_\+population,  }\item[{unsigned long}]{n\+\_\+chromosome,  }\item[{const \mbox{\hyperlink{class_abstract_selection_configuration}{Abstract\+Selection\+Configuration}}$<$ T $>$ $\ast$}]{abstract\+\_\+selection\+\_\+configuration,  }\item[{const \mbox{\hyperlink{class_abstract_crossover_configuration}{Abstract\+Crossover\+Configuration}}$<$ T $>$ $\ast$}]{abstract\+\_\+crossover\+\_\+configuration,  }\item[{const \mbox{\hyperlink{class_mutation_configuration}{Mutation\+Configuration}}$<$ T $>$ $\ast$}]{mutation\+\_\+configuration,  }\item[{std\+::string($\ast$)(const T $\ast$)}]{to\+\_\+string }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initialize a configuration object to control the genetic algorithms behaviour 
+\begin{DoxyParams}{Parameters}
+{\em fitness\+\_\+function} & Function pointer to fitness function to be used to determine chromosome\textquotesingle{}s fitness score \\
+\hline
+{\em alleles} & Set of possible allele values \\
+\hline
+{\em n\+\_\+population} & \mbox{\hyperlink{class_population}{Population}} size \\
+\hline
+{\em n\+\_\+chromosome} & \mbox{\hyperlink{class_chromosome}{Chromosome}} size \\
+\hline
+{\em abstract\+\_\+selection\+\_\+configuration} & \mbox{\hyperlink{class_configuration}{Configuration}} object for selection method \\
+\hline
+{\em abstract\+\_\+crossover\+\_\+configuration} & \mbox{\hyperlink{class_configuration}{Configuration}} object for crossover method \\
+\hline
+{\em mutation\+\_\+configuration} & \mbox{\hyperlink{class_configuration}{Configuration}} object for mutation method \\
+\hline
+{\em to\+\_\+string} & Function pointer to to\+\_\+string function, used to serialize chromosomes \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_configuration_a904e1811a3d0f0a33ebc98a07855d550}\label{class_configuration_a904e1811a3d0f0a33ebc98a07855d550}} 
+\index{Configuration$<$ T $>$@{Configuration$<$ T $>$}!get\_alleles@{get\_alleles}}
+\index{get\_alleles@{get\_alleles}!Configuration$<$ T $>$@{Configuration$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{get\_alleles()}{get\_alleles()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const std\+::vector$<$T $\ast$$>$$\ast$ \mbox{\hyperlink{class_configuration}{Configuration}}$<$ T $>$\+::get\+\_\+alleles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get possible values for alleles \begin{DoxyReturn}{Returns}
+Possible values 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration_afdf2a53c5cd7c27f54fb51aa4689172b}\label{class_configuration_afdf2a53c5cd7c27f54fb51aa4689172b}} 
+\index{Configuration$<$ T $>$@{Configuration$<$ T $>$}!get\_chromosome\_size@{get\_chromosome\_size}}
+\index{get\_chromosome\_size@{get\_chromosome\_size}!Configuration$<$ T $>$@{Configuration$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{get\_chromosome\_size()}{get\_chromosome\_size()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+unsigned long \mbox{\hyperlink{class_configuration}{Configuration}}$<$ T $>$\+::get\+\_\+chromosome\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get defined length of single chromosome \begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_chromosome}{Chromosome}} size 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration_ab002e077b6ce3d8fe5c5d08e5ba511ae}\label{class_configuration_ab002e077b6ce3d8fe5c5d08e5ba511ae}} 
+\index{Configuration$<$ T $>$@{Configuration$<$ T $>$}!get\_crossover\_configuration@{get\_crossover\_configuration}}
+\index{get\_crossover\_configuration@{get\_crossover\_configuration}!Configuration$<$ T $>$@{Configuration$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{get\_crossover\_configuration()}{get\_crossover\_configuration()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const \mbox{\hyperlink{class_abstract_crossover_configuration}{Abstract\+Crossover\+Configuration}}$\ast$ \mbox{\hyperlink{class_configuration}{Configuration}}$<$ T $>$\+::get\+\_\+crossover\+\_\+configuration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get configuration for crossover method \begin{DoxyReturn}{Returns}
+Crossover configuration 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration_a33fa9513147023119078a8fc5690cedb}\label{class_configuration_a33fa9513147023119078a8fc5690cedb}} 
+\index{Configuration$<$ T $>$@{Configuration$<$ T $>$}!get\_crossover\_type@{get\_crossover\_type}}
+\index{get\_crossover\_type@{get\_crossover\_type}!Configuration$<$ T $>$@{Configuration$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{get\_crossover\_type()}{get\_crossover\_type()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+Crossover \mbox{\hyperlink{class_configuration}{Configuration}}$<$ T $>$\+::get\+\_\+crossover\+\_\+type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the configured crossover method type \begin{DoxyReturn}{Returns}
+Crossover type 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration_a4727e1ee69043421d2e4eba5149302c2}\label{class_configuration_a4727e1ee69043421d2e4eba5149302c2}} 
+\index{Configuration$<$ T $>$@{Configuration$<$ T $>$}!get\_mutation\_configuration@{get\_mutation\_configuration}}
+\index{get\_mutation\_configuration@{get\_mutation\_configuration}!Configuration$<$ T $>$@{Configuration$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{get\_mutation\_configuration()}{get\_mutation\_configuration()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const \mbox{\hyperlink{class_mutation_configuration}{Mutation\+Configuration}}$\ast$ \mbox{\hyperlink{class_configuration}{Configuration}}$<$ T $>$\+::get\+\_\+mutation\+\_\+configuration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get configuration for mutation method \begin{DoxyReturn}{Returns}
+Mutation configuration 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration_ad9f57884c7aa945aab147a377dff6e95}\label{class_configuration_ad9f57884c7aa945aab147a377dff6e95}} 
+\index{Configuration$<$ T $>$@{Configuration$<$ T $>$}!get\_population\_size@{get\_population\_size}}
+\index{get\_population\_size@{get\_population\_size}!Configuration$<$ T $>$@{Configuration$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{get\_population\_size()}{get\_population\_size()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+unsigned long \mbox{\hyperlink{class_configuration}{Configuration}}$<$ T $>$\+::get\+\_\+population\+\_\+size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get total population size, i.\+e. number of chromosomes \begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{class_population}{Population}} size 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration_a33c3029765d4d8d4a107ba7d72496b36}\label{class_configuration_a33c3029765d4d8d4a107ba7d72496b36}} 
+\index{Configuration$<$ T $>$@{Configuration$<$ T $>$}!get\_selection\_configuration@{get\_selection\_configuration}}
+\index{get\_selection\_configuration@{get\_selection\_configuration}!Configuration$<$ T $>$@{Configuration$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{get\_selection\_configuration()}{get\_selection\_configuration()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+const \mbox{\hyperlink{class_abstract_selection_configuration}{Abstract\+Selection\+Configuration}}$\ast$ \mbox{\hyperlink{class_configuration}{Configuration}}$<$ T $>$\+::get\+\_\+selection\+\_\+configuration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get configuration for selection method \begin{DoxyReturn}{Returns}
+Selection configuration 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration_a44fea71c7d5e6399a64aa3fc27979ddd}\label{class_configuration_a44fea71c7d5e6399a64aa3fc27979ddd}} 
+\index{Configuration$<$ T $>$@{Configuration$<$ T $>$}!get\_selection\_type@{get\_selection\_type}}
+\index{get\_selection\_type@{get\_selection\_type}!Configuration$<$ T $>$@{Configuration$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{get\_selection\_type()}{get\_selection\_type()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+Selection \mbox{\hyperlink{class_configuration}{Configuration}}$<$ T $>$\+::get\+\_\+selection\+\_\+type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the configured selection method type \begin{DoxyReturn}{Returns}
+Selection type 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_configuration_a254d5aeff08c48fa2f88e4b5208834d9}\label{class_configuration_a254d5aeff08c48fa2f88e4b5208834d9}} 
+\index{Configuration$<$ T $>$@{Configuration$<$ T $>$}!fitness\_function@{fitness\_function}}
+\index{fitness\_function@{fitness\_function}!Configuration$<$ T $>$@{Configuration$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{fitness\_function}{fitness\_function}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+double($\ast$ \mbox{\hyperlink{class_configuration}{Configuration}}$<$ T $>$\+::fitness\+\_\+function) (const std\+::vector$<$ T $\ast$ $>$ $\ast$)}
+
+Function pointer to fitness function \begin{DoxyReturn}{Returns}
+Score 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_configuration_a7773ea40d9af80d2399f30822a164201}\label{class_configuration_a7773ea40d9af80d2399f30822a164201}} 
+\index{Configuration$<$ T $>$@{Configuration$<$ T $>$}!to\_string@{to\_string}}
+\index{to\_string@{to\_string}!Configuration$<$ T $>$@{Configuration$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{to\_string}{to\_string}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::string($\ast$ \mbox{\hyperlink{class_configuration}{Configuration}}$<$ T $>$\+::to\+\_\+string) (const T $\ast$v)}
+
+Function pointer to to\+\_\+string function 
+\begin{DoxyParams}{Parameters}
+{\em v} & Value to be serialized \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+String representation 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/geneticalgorithm/configuration/Configuration.\+h\end{DoxyCompactItemize}
