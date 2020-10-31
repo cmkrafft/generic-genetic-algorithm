@@ -123,18 +123,39 @@ public:
     }
 
     /**
-     * Get chromosome with highest score from current generation
-     * @return Best fit
+     * Get chromosomes with highest score from current generation
+     * @return Best fits
      */
-    const Chromosome<T> *get_best() const {
-        return const_cast<Chromosome<T> *>(this->current_scores->at(
+    const std::vector<Chromosome<T> *> *get_best() const {
+        auto max_fitness = this->current_scores->at(
                 std::distance(this->current_scores->begin(),
                               std::max_element(this->current_scores->begin(),
                                                this->current_scores->end(),
                                                [](const std::pair<Chromosome<T> *, double> *l,
                                                   const std::pair<Chromosome<T> *, double> *r) {
                                                    return l->second < r->second;
-                                               })))->first);
+                                               })))->second;
+
+        auto result_pairs = new std::vector<std::pair<Chromosome<T> *, double> *>();
+
+        std::copy_if(this->current_scores->begin(),
+                     this->current_scores->end(),
+                     std::back_inserter(*result_pairs),
+                     [max_fitness](const std::pair<Chromosome<T> *, double> *p) {
+                         return p->second == max_fitness;
+                     });
+
+        auto result = new std::vector<Chromosome<T> *>();
+
+        std::for_each(result_pairs->begin(),
+                      result_pairs->end(),
+                      [result](const std::pair<Chromosome<T> *, double> *p) {
+                          result->push_back(p->first);
+                      });
+
+        delete result_pairs;
+
+        return const_cast<std::vector<Chromosome<T> *> *>(result);
     }
 
     /**

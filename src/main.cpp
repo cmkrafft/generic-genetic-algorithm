@@ -65,7 +65,7 @@ int main() {
 
     auto avg_scores = new std::vector<double>();
 
-    auto config = const_cast<Configuration<int> *>(new Configuration<int>(fitness_function, set, 1000, 10, s2, c2, m,
+    auto config = const_cast<Configuration<int> *>(new Configuration<int>(fitness_function, set, 100, 10, s2, c2, m,
                                                                           to_string));
 
     auto population = new Population<int>(config);
@@ -79,7 +79,12 @@ int main() {
 
         avg_scores->push_back(population->get_avg_score());
     }
-    std::cout << population->get_best()->to_string() << std::endl;
+
+    auto best_results = population->get_best();
+
+    std::cout << best_results->at(0)->to_string() << std::endl;
+
+    delete best_results;
 
     std::cout << "AVGs" << std::endl;
 
