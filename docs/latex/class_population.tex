@@ -15,7 +15,7 @@ void \mbox{\hyperlink{class_population_aceed553b06d9afcfecd564754f7d15e6}{popula
 \item 
 std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{class_chromosome}{Chromosome}}$<$ T $>$ $\ast$, double $>$ $\ast$ $>$ $\ast$ \mbox{\hyperlink{class_population_a78350bdca9412baa5ffa2e073e158669}{get\+\_\+scores}} () const
 \item 
-\mbox{\hyperlink{class_chromosome}{Chromosome}}$<$ T $>$ $\ast$ \mbox{\hyperlink{class_population_a53c86b3180258a3ce3e0c87c314bc3e7}{get\+\_\+best}} () const
+const std\+::vector$<$ \mbox{\hyperlink{class_chromosome}{Chromosome}}$<$ T $>$ $\ast$ $>$ $\ast$ \mbox{\hyperlink{class_population_a1d58f084602fcb692523d82d92b02648}{get\+\_\+best}} () const
 \item 
 double \mbox{\hyperlink{class_population_aaf4f5a2bc8931bbda42ad2938923f086}{get\+\_\+avg\+\_\+score}} () const
 \item 
@@ -66,15 +66,15 @@ double \mbox{\hyperlink{class_population}{Population}}$<$ T $>$\+::get\+\_\+avg\
 Get average score of all chromosomes based on their fitness\+\_\+function \begin{DoxyReturn}{Returns}
 Average chromosome fitness 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_population_a53c86b3180258a3ce3e0c87c314bc3e7}\label{class_population_a53c86b3180258a3ce3e0c87c314bc3e7}} 
+\mbox{\Hypertarget{class_population_a1d58f084602fcb692523d82d92b02648}\label{class_population_a1d58f084602fcb692523d82d92b02648}} 
 \index{Population$<$ T $>$@{Population$<$ T $>$}!get\_best@{get\_best}}
 \index{get\_best@{get\_best}!Population$<$ T $>$@{Population$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{get\_best()}{get\_best()}}
 {\footnotesize\ttfamily template$<$typename T $>$ \\
-\mbox{\hyperlink{class_chromosome}{Chromosome}}$<$T$>$$\ast$ \mbox{\hyperlink{class_population}{Population}}$<$ T $>$\+::get\+\_\+best (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$\mbox{\hyperlink{class_chromosome}{Chromosome}}$<$T$>$ $\ast$$>$$\ast$ \mbox{\hyperlink{class_population}{Population}}$<$ T $>$\+::get\+\_\+best (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-Get chromosome with highest score from current generation \begin{DoxyReturn}{Returns}
-Best fit 
+Get chromosomes with highest score from current generation \begin{DoxyReturn}{Returns}
+Best fits 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_population_ab99e0c6cc18ced35dd19da49c64d680a}\label{class_population_ab99e0c6cc18ced35dd19da49c64d680a}} 
 \index{Population$<$ T $>$@{Population$<$ T $>$}!get\_chromosomes@{get\_chromosomes}}

@@ -28,6 +28,7 @@ public:
      * @param configuration Population configuration
      */
     explicit Population(const Configuration<T> *configuration) {
+        // TODO: Pass Seed!
         RandomNumberGenerator initial_rnd = RandomNumberGenerator();
 
         this->configuration = configuration;
@@ -85,7 +86,13 @@ public:
 
 #pragma omp for
         for (int i = 0; i < next_generation->size(); i++) {
-            next_generation->at(i) = this->perform_crossover(this->rngs->at(i));
+            auto selected_chromosomes = perform_selection(this->rngs->at(i));
+
+            next_generation->at(i) = this->perform_crossover(selected_chromosomes->first,
+                                                             selected_chromosomes->second,
+                                                             this->rngs->at(i));
+
+            delete selected_chromosomes;
         }
 
         std::for_each(this->chromosomes->begin(), this->chromosomes->end(),
@@ -258,18 +265,13 @@ private:
     }
 
     /**
-     * Perform crossover mutation using specific instance of RandomNumberGenerator
+     * Perform crossover for two chromosomes using specific instance of RandomNumberGenerator
+     * @param first First chromosome
+     * @pararm second Second chromosome
      * @param rnd Instance of RandomNumberGenerator
      * @return Resulting chromosome
      */
-    Chromosome<T> *perform_crossover(RandomNumberGenerator *rnd) const {
-        auto first = perform_selection(rnd);
-        Chromosome<T> *second;
-
-        do {
-            second = perform_selection(rnd);
-        } while (first == second);
-
+    Chromosome<T> *perform_crossover(Chromosome<T> *first, Chromosome<T> *second, RandomNumberGenerator *rnd) const {
         auto *v = new std::vector<T *>(this->chromosomes->at(0)->get_genes()->size());
 
         int split_index;
@@ -335,11 +337,27 @@ private:
     }
 
     /**
+     * Perform selection according to configured selection method
+     * @param rnd Random number generator to be used
+     * @return Pair of selected chromosomes
+     */
+    std::pair<Chromosome<T> *, Chromosome<T> *> *perform_selection(RandomNumberGenerator *rnd) const {
+        auto first = select_chromosome(rnd);
+        Chromosome<T> *second;
+
+        do {
+            second = select_chromosome(rnd);
+        } while (first == second);
+
+        return new std::pair<Chromosome<T> *, Chromosome<T> *>(first, second);
+    }
+
+    /**
      * Perform selection method as configured for population
      * @param rnd RandomNumberGenerator to be used for selection methods
      * @return Selected chromosome
      */
-    Chromosome<T> *perform_selection(RandomNumberGenerator *rnd) const {
+    Chromosome<T> *select_chromosome(RandomNumberGenerator *rnd) const {
         switch (this->configuration->get_selection_type()) {
             case (PROPORTIONATE_SELECTION): {
                 return this->perform_proportionate_selection(rnd);

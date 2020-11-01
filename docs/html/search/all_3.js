@@ -2,7 +2,7 @@ var searchData=
 [
   ['get_5falleles_7',['get_alleles',['../class_configuration.html#a904e1811a3d0f0a33ebc98a07855d550',1,'Configuration']]],
   ['get_5favg_5fscore_8',['get_avg_score',['../class_population.html#aaf4f5a2bc8931bbda42ad2938923f086',1,'Population']]],
-  ['get_5fbest_9',['get_best',['../class_population.html#a53c86b3180258a3ce3e0c87c314bc3e7',1,'Population']]],
+  ['get_5fbest_9',['get_best',['../class_population.html#a1d58f084602fcb692523d82d92b02648',1,'Population']]],
   ['get_5fchromosome_5fsize_10',['get_chromosome_size',['../class_configuration.html#afdf2a53c5cd7c27f54fb51aa4689172b',1,'Configuration']]],
   ['get_5fchromosomes_11',['get_chromosomes',['../class_population.html#ab99e0c6cc18ced35dd19da49c64d680a',1,'Population']]],
   ['get_5fcrossover_5fconfiguration_12',['get_crossover_configuration',['../class_configuration.html#ab002e077b6ce3d8fe5c5d08e5ba511ae',1,'Configuration']]],
@@ -19,5 +19,6 @@ var searchData=
   ['get_5fscores_23',['get_scores',['../class_population.html#a78350bdca9412baa5ffa2e073e158669',1,'Population']]],
   ['get_5fselection_5fconfiguration_24',['get_selection_configuration',['../class_configuration.html#a33c3029765d4d8d4a107ba7d72496b36',1,'Configuration']]],
   ['get_5fselection_5ftype_25',['get_selection_type',['../class_configuration.html#a44fea71c7d5e6399a64aa3fc27979ddd',1,'Configuration']]],
-  ['get_5fsingle_5fpoint_5fcrossover_5fconfiguration_26',['get_single_point_crossover_configuration',['../class_single_point_crossover_configuration.html#a9e721cab6972bd9a6a8913a7c67851c8',1,'SinglePointCrossoverConfiguration']]]
+  ['get_5fsingle_5fpoint_5fcrossover_5fconfiguration_26',['get_single_point_crossover_configuration',['../class_single_point_crossover_configuration.html#a9e721cab6972bd9a6a8913a7c67851c8',1,'SinglePointCrossoverConfiguration']]],
+  ['genetic_20algorithm_27',['Genetic Algorithm',['../index.html',1,'']]]
 ];
