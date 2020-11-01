@@ -139,7 +139,7 @@ $(function() {
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                    this-&gt;configuration-&gt;to_string);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        this-&gt;current_scores = this-&gt;<a class="code" href="class_population.html#a78350bdca9412baa5ffa2e073e158669">get_scores</a>();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        this-&gt;current_scores = this-&gt;<a class="code" href="class_population.html#ac5f2e839443e1a62773f8060d3e7dd97">get_scores</a>(this-&gt;chromosomes);</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
 <div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="class_population.html#a48f87459ba36227151a9d6e61e351095">   84</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_population.html#a48f87459ba36227151a9d6e61e351095">populate_next_generation</a>() {</div>
@@ -167,7 +167,7 @@ $(function() {
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                      [](<span class="keyword">const</span> std::pair&lt;<a class="code" href="class_chromosome.html">Chromosome&lt;T&gt;</a> *, <span class="keywordtype">double</span>&gt; *n) { delete n; });</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keyword">delete</span> this-&gt;current_scores;</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        this-&gt;current_scores = this-&gt;<a class="code" href="class_population.html#a78350bdca9412baa5ffa2e073e158669">get_scores</a>();</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        this-&gt;current_scores = this-&gt;<a class="code" href="class_population.html#ac5f2e839443e1a62773f8060d3e7dd97">get_scores</a>(this-&gt;chromosomes);</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        this-&gt;current_generation++;</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    }</div>
@@ -178,8 +178,8 @@ $(function() {
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        }</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    }</div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="class_population.html#a78350bdca9412baa5ffa2e073e158669">  128</a></span>&#160;    std::vector&lt;std::pair&lt;Chromosome&lt;T&gt; *, <span class="keywordtype">double</span>&gt; *&gt; *<a class="code" href="class_population.html#a78350bdca9412baa5ffa2e073e158669">get_scores</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keywordflow">return</span> this-&gt;<a class="code" href="class_population.html#a78350bdca9412baa5ffa2e073e158669">get_scores</a>(this-&gt;chromosomes);</div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="class_population.html#ac5f2e839443e1a62773f8060d3e7dd97">  128</a></span>&#160;    <span class="keyword">const</span> std::vector&lt;std::pair&lt;Chromosome&lt;T&gt; *, <span class="keywordtype">double</span>&gt; *&gt; *<a class="code" href="class_population.html#ac5f2e839443e1a62773f8060d3e7dd97">get_scores</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">const_cast&lt;</span>std::vector&lt;std::pair&lt;Chromosome&lt;T&gt; *, <span class="keywordtype">double</span><span class="keyword">&gt;</span> *&gt; *&gt;(this-&gt;<a class="code" href="class_population.html#ac5f2e839443e1a62773f8060d3e7dd97">get_scores</a>(this-&gt;chromosomes));</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    }</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
 <div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="class_population.html#a1d58f084602fcb692523d82d92b02648">  136</a></span>&#160;    <span class="keyword">const</span> std::vector&lt;Chromosome&lt;T&gt; *&gt; *<a class="code" href="class_population.html#a1d58f084602fcb692523d82d92b02648">get_best</a>()<span class="keyword"> const </span>{</div>
@@ -279,7 +279,7 @@ $(function() {
 <div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160; </div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    std::vector&lt;std::pair&lt;Chromosome&lt;T&gt; *, <span class="keywordtype">double</span>&gt; *&gt; *current_scores;</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160; </div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    std::vector&lt;std::pair&lt;Chromosome&lt;T&gt; *, <span class="keywordtype">double</span>&gt; *&gt; *<a class="code" href="class_population.html#a78350bdca9412baa5ffa2e073e158669">get_scores</a>(std::vector&lt;<a class="code" href="class_chromosome.html">Chromosome&lt;T&gt;</a> *&gt; *sample)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    std::vector&lt;std::pair&lt;Chromosome&lt;T&gt; *, <span class="keywordtype">double</span>&gt; *&gt; *<a class="code" href="class_population.html#ac5f2e839443e1a62773f8060d3e7dd97">get_scores</a>(std::vector&lt;<a class="code" href="class_chromosome.html">Chromosome&lt;T&gt;</a> *&gt; *sample)<span class="keyword"> const </span>{</div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        <span class="keyword">auto</span> results = <span class="keyword">new</span> std::vector&lt;std::pair&lt;Chromosome&lt;T&gt; *, <span class="keywordtype">double</span>&gt; *&gt;(sample-&gt;size());</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="preprocessor">#pragma omp for</span></div>
@@ -425,7 +425,7 @@ $(function() {
 <div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;            contestants-&gt;at(j) = this-&gt;chromosomes-&gt;at(rnd_index);</div>
 <div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;        }</div>
 <div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160; </div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;        <span class="keyword">auto</span> contestants_results = this-&gt;<a class="code" href="class_population.html#a78350bdca9412baa5ffa2e073e158669">get_scores</a>(contestants);</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;        <span class="keyword">auto</span> contestants_results = this-&gt;<a class="code" href="class_population.html#ac5f2e839443e1a62773f8060d3e7dd97">get_scores</a>(contestants);</div>
 <div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160; </div>
 <div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;        <span class="keyword">auto</span> result = std::max_element(contestants_results-&gt;begin(), contestants_results-&gt;end(),</div>
 <div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;                                       [](<span class="keyword">const</span> std::pair&lt;<a class="code" href="class_chromosome.html">Chromosome&lt;T&gt;</a> *, <span class="keywordtype">double</span>&gt; *l,</div>
@@ -439,7 +439,7 @@ $(function() {
 <div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;        <span class="keyword">delete</span> contestant_indexes;</div>
 <div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160; </div>
 <div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        std::for_each(contestants_results-&gt;begin(), contestants_results-&gt;end(),</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;                      [](<span class="keyword">const</span> std::pair&lt;<a class="code" href="class_chromosome.html">Chromosome&lt;T&gt;</a> *, <span class="keywordtype">double</span>&gt; *n) { delete n; });</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;                      [](<span class="keyword">const</span> std::pair&lt;<a class="code" href="class_chromosome.html">Chromosome&lt;T&gt;</a> *, <span class="keywordtype">double</span>&gt; *p) { delete p; });</div>
 <div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160; </div>
 <div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;        <span class="keyword">delete</span> contestants_results;</div>
 <div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160; </div>
@@ -456,6 +456,7 @@ $(function() {
 <div class="ttc" id="aclass_population_html_a48f87459ba36227151a9d6e61e351095"><div class="ttname"><a href="class_population.html#a48f87459ba36227151a9d6e61e351095">Population::populate_next_generation</a></div><div class="ttdeci">void populate_next_generation()</div><div class="ttdef"><b>Definition:</b> Population.h:84</div></div>
 <div class="ttc" id="aclass_configuration_html_a44fea71c7d5e6399a64aa3fc27979ddd"><div class="ttname"><a href="class_configuration.html#a44fea71c7d5e6399a64aa3fc27979ddd">Configuration::get_selection_type</a></div><div class="ttdeci">Selection get_selection_type() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:97</div></div>
 <div class="ttc" id="aclass_configuration_html_ad9f57884c7aa945aab147a377dff6e95"><div class="ttname"><a href="class_configuration.html#ad9f57884c7aa945aab147a377dff6e95">Configuration::get_population_size</a></div><div class="ttdeci">unsigned long get_population_size() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:158</div></div>
+<div class="ttc" id="aclass_population_html_ac5f2e839443e1a62773f8060d3e7dd97"><div class="ttname"><a href="class_population.html#ac5f2e839443e1a62773f8060d3e7dd97">Population::get_scores</a></div><div class="ttdeci">const std::vector&lt; std::pair&lt; Chromosome&lt; T &gt; *, double &gt; * &gt; * get_scores() const</div><div class="ttdef"><b>Definition:</b> Population.h:128</div></div>
 <div class="ttc" id="aclass_single_point_crossover_configuration_html"><div class="ttname"><a href="class_single_point_crossover_configuration.html">SinglePointCrossoverConfiguration</a></div><div class="ttdef"><b>Definition:</b> SinglePointCrossoverConfiguration.h:20</div></div>
 <div class="ttc" id="aclass_configuration_html"><div class="ttname"><a href="class_configuration.html">Configuration</a></div><div class="ttdef"><b>Definition:</b> Configuration.h:31</div></div>
 <div class="ttc" id="aclass_fixed_mode_html"><div class="ttname"><a href="class_fixed_mode.html">FixedMode</a></div><div class="ttdef"><b>Definition:</b> FixedMode.h:13</div></div>
@@ -464,7 +465,6 @@ $(function() {
 <div class="ttc" id="aclass_random_number_generator_html"><div class="ttname"><a href="class_random_number_generator.html">RandomNumberGenerator</a></div><div class="ttdef"><b>Definition:</b> RandomNumberGenerator.h:11</div></div>
 <div class="ttc" id="aclass_population_html_a6aa6a6ed0d58c6b2cac4df7e88b5250a"><div class="ttname"><a href="class_population.html#a6aa6a6ed0d58c6b2cac4df7e88b5250a">Population::Population</a></div><div class="ttdeci">Population(const Configuration&lt; T &gt; *configuration)</div><div class="ttdef"><b>Definition:</b> Population.h:30</div></div>
 <div class="ttc" id="aclass_chromosome_html_a1304a510e1d4ca037822205eb3446894"><div class="ttname"><a href="class_chromosome.html#a1304a510e1d4ca037822205eb3446894">Chromosome::get_genes</a></div><div class="ttdeci">const std::vector&lt; T * &gt; * get_genes() const</div><div class="ttdef"><b>Definition:</b> Chromosome.h:40</div></div>
-<div class="ttc" id="aclass_population_html_a78350bdca9412baa5ffa2e073e158669"><div class="ttname"><a href="class_population.html#a78350bdca9412baa5ffa2e073e158669">Population::get_scores</a></div><div class="ttdeci">std::vector&lt; std::pair&lt; Chromosome&lt; T &gt; *, double &gt; * &gt; * get_scores() const</div><div class="ttdef"><b>Definition:</b> Population.h:128</div></div>
 <div class="ttc" id="aclass_population_html_aceed553b06d9afcfecd564754f7d15e6"><div class="ttname"><a href="class_population.html#aceed553b06d9afcfecd564754f7d15e6">Population::populate_next_generations</a></div><div class="ttdeci">void populate_next_generations(const unsigned long &amp;n_generations)</div><div class="ttdef"><b>Definition:</b> Population.h:118</div></div>
 <div class="ttc" id="aclass_configuration_html_a33fa9513147023119078a8fc5690cedb"><div class="ttname"><a href="class_configuration.html#a33fa9513147023119078a8fc5690cedb">Configuration::get_crossover_type</a></div><div class="ttdeci">Crossover get_crossover_type() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:105</div></div>
 <div class="ttc" id="aclass_configuration_html_ab002e077b6ce3d8fe5c5d08e5ba511ae"><div class="ttname"><a href="class_configuration.html#ab002e077b6ce3d8fe5c5d08e5ba511ae">Configuration::get_crossover_configuration</a></div><div class="ttdeci">const AbstractCrossoverConfiguration * get_crossover_configuration() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:121</div></div>

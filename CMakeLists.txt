@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.16)
+
 project(GeneticAlgorithm VERSION 0.0.1 DESCRIPTION "A generic genetic algorithm implementation")
+
+find_package(OpenMP REQUIRED)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_FLAGS -g)
@@ -12,9 +15,23 @@ add_library(GeneticAlgorithmLib src/geneticalgorithm/Chromosome.cpp src/genetica
 set_target_properties(GeneticAlgorithmLib PROPERTIES VERSION ${PROJECT_VERSION})
 target_include_directories(GeneticAlgorithmLib PRIVATE src/geneticalgorithm)
 
-find_package(OpenMP REQUIRED)
 target_link_libraries(GeneticAlgorithmLib PRIVATE OpenMP::OpenMP_CXX)
+
+add_custom_target(library DEPENDS GeneticAlgorithmLib)
 
 add_executable(GeneticAlgorithm src/main.cpp)
 
 target_link_libraries(GeneticAlgorithm PRIVATE GeneticAlgorithmLib)
+
+add_custom_target(executable DEPENDS GeneticAlgorithm)
+
+find_package(Doxygen)
+if (DOXYGEN_FOUND)
+    add_custom_target(
+            docs ALL
+
+            COMMAND doxygen docsconf
+            COMMENT "Generating API documentation with Doxygen"
+            VERBATIM
+    )
+endif (DOXYGEN_FOUND)

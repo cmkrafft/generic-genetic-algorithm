@@ -11,3 +11,5 @@ docs/
 GeneticAlgorithm.cbp
 lib/
 CMakeDoxyfile.in
+CMakeDoxygenDefaults.cmake
+CMakeLists.txt
