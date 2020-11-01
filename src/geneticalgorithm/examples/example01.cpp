@@ -1,9 +1,13 @@
 #include <iostream>
+#include <configuration/selection/tournament/TournamentSelectionConfiguration.h>
+#include <configuration/selection/proportionate/ProportionateSelectionConfiguration.h>
+#include <configuration/crossover/singlepoint/mode/FixedMode.h>
+#include <configuration/crossover/singlepoint/SinglePointCrossoverConfiguration.h>
+#include <configuration/crossover/uniform/UniformCrossoverConfiguration.h>
+#include <configuration/mutation/MutationConfiguration.h>
+#include <configuration/Configuration.h>
+#include <Population.h>
 #include "vector"
-#include "geneticalgorithm/Population.h"
-#include "geneticalgorithm/configuration/Configuration.h"
-#include "geneticalgorithm/configuration/selection/tournament/TournamentSelectionConfiguration.h"
-#include "geneticalgorithm/configuration/crossover/singlepoint/SinglePointCrossoverConfiguration.h"
 
 
 double fitness_function(const std::vector<int *> *gene) {
@@ -106,7 +110,6 @@ int main() {
 
     std::for_each(set->begin(), set->end(), [](const int *i) { delete i; });
     delete set;
-
 
     return 0;
 }

@@ -35,7 +35,9 @@ public:
 
         this->random_number_generators = new std::vector<RandomNumberGenerator *>(configuration->get_population_size());
 
+#ifdef USE_PARALLELISM
 #pragma omp for
+#endif
         for (int i = 0; i < configuration->get_population_size(); i++) {
             random_number_generators->at(i) = new RandomNumberGenerator(
                     initial_rnd.get_next(0, this->configuration->get_population_size()));
@@ -47,7 +49,9 @@ public:
 
         auto possible_values = configuration->get_alleles();
 
+#ifdef USE_PARALLELISM
 #pragma omp for
+#endif
         for (int i = 0; i < this->configuration->get_population_size(); i++) {
             RandomNumberGenerator *rnd = this->random_number_generators->at(i);
 
@@ -84,7 +88,9 @@ public:
     void populate_next_generation() {
         auto next_generation = new std::vector<Chromosome<T> *>(this->chromosomes->size());
 
+#ifdef USE_PARALLELISM
 #pragma omp for
+#endif
         for (int i = 0; i < next_generation->size(); i++) {
             auto selected_chromosomes = perform_selection(this->random_number_generators->at(i));
 
@@ -256,7 +262,9 @@ private:
     std::vector<std::pair<Chromosome<T> *, double> *> *get_scores(std::vector<Chromosome<T> *> *sample) const {
         auto results = new std::vector<std::pair<Chromosome<T> *, double> *>(sample->size());
 
+#ifdef USE_PARALLELISM
 #pragma omp for
+#endif
         for (int i = 0; i < sample->size(); i++) {
             results->at(i) = new std::pair(sample->at(i), sample->at(i)->get_fitness());
         }

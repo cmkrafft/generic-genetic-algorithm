@@ -13,3 +13,7 @@ lib/
 CMakeDoxyfile.in
 CMakeDoxygenDefaults.cmake
 CMakeLists.txt
+**/install_manifest.txt
+**/GeneticAlgorithmLib.cbp
+include/
+**/Examples.cbp

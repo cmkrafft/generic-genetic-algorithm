@@ -5,13 +5,13 @@
 #ifndef GENETICALGORITHM_CONFIGURATION_H
 #define GENETICALGORITHM_CONFIGURATION_H
 
-#include "selection/AbstractSelectionConfiguration.h"
 #include "crossover/AbstractCrossoverConfiguration.h"
 #include "selection/tournament/TournamentSelectionConfiguration.h"
 #include "selection/proportionate/ProportionateSelectionConfiguration.h"
 #include "crossover/singlepoint/SinglePointCrossoverConfiguration.h"
 #include "crossover/uniform/UniformCrossoverConfiguration.h"
 #include "mutation/MutationConfiguration.h"
+#include "selection/AbstractSelectionConfiguration.h"
 
 enum Selection {
     TOURNAMENT_SELECTION,

@@ -5,7 +5,6 @@
 #ifndef GENETICALGORITHM_SINGLEPOINTCROSSOVERCONFIGURATION_H
 #define GENETICALGORITHM_SINGLEPOINTCROSSOVERCONFIGURATION_H
 
-
 #include "../AbstractCrossoverConfiguration.h"
 #include "mode/AbstractSinglePointCrossoverConfigurationMode.h"
 
