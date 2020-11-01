@@ -33,11 +33,11 @@ public:
 
         this->configuration = configuration;
 
-        this->rngs = new std::vector<RandomNumberGenerator *>(configuration->get_population_size());
+        this->random_number_generators = new std::vector<RandomNumberGenerator *>(configuration->get_population_size());
 
 #pragma omp for
         for (int i = 0; i < configuration->get_population_size(); i++) {
-            rngs->at(i) = new RandomNumberGenerator(
+            random_number_generators->at(i) = new RandomNumberGenerator(
                     initial_rnd.get_next(0, this->configuration->get_population_size()));
         }
 
@@ -49,7 +49,7 @@ public:
 
 #pragma omp for
         for (int i = 0; i < this->configuration->get_population_size(); i++) {
-            RandomNumberGenerator *rnd = this->rngs->at(i);
+            RandomNumberGenerator *rnd = this->random_number_generators->at(i);
 
             std::vector<T *> *tmp_v;
 
@@ -75,7 +75,7 @@ public:
                     this->configuration->to_string);
         }
 
-        this->current_scores = this->get_scores();
+        this->current_scores = this->get_scores(this->chromosomes);
     }
 
     /**
@@ -86,11 +86,11 @@ public:
 
 #pragma omp for
         for (int i = 0; i < next_generation->size(); i++) {
-            auto selected_chromosomes = perform_selection(this->rngs->at(i));
+            auto selected_chromosomes = perform_selection(this->random_number_generators->at(i));
 
             next_generation->at(i) = this->perform_crossover(selected_chromosomes->first,
                                                              selected_chromosomes->second,
-                                                             this->rngs->at(i));
+                                                             this->random_number_generators->at(i));
 
             delete selected_chromosomes;
         }
@@ -106,7 +106,7 @@ public:
                       [](const std::pair<Chromosome<T> *, double> *n) { delete n; });
         delete this->current_scores;
 
-        this->current_scores = this->get_scores();
+        this->current_scores = this->get_scores(this->chromosomes);
 
         this->current_generation++;
     }
@@ -125,8 +125,8 @@ public:
      * Get all chromosomes and their current scores based on their fitness functions
      * @return Current generation of chromosomes and scores
      */
-    std::vector<std::pair<Chromosome<T> *, double> *> *get_scores() const {
-        return this->get_scores(this->chromosomes);
+    const std::vector<std::pair<Chromosome<T> *, double> *> *get_scores() const {
+        return const_cast<std::vector<std::pair<Chromosome<T> *, double> *> *>(this->get_scores(this->chromosomes));
     }
 
     /**
@@ -235,14 +235,14 @@ public:
                       [](const std::pair<Chromosome<T> *, double> *n) { delete n; });
         delete this->current_scores;
 
-        std::for_each(this->rngs->begin(), this->rngs->end(),
+        std::for_each(this->random_number_generators->begin(), this->random_number_generators->end(),
                       [](const RandomNumberGenerator *n) { delete n; });
-        delete this->rngs;
+        delete this->random_number_generators;
     }
 
 private:
     std::vector<Chromosome<T> *> *chromosomes;
-    std::vector<RandomNumberGenerator *> *rngs{};
+    std::vector<RandomNumberGenerator *> *random_number_generators{};
     const Configuration<T> *configuration;
 
     unsigned long current_generation{};
@@ -440,7 +440,7 @@ private:
         delete contestant_indexes;
 
         std::for_each(contestants_results->begin(), contestants_results->end(),
-                      [](const std::pair<Chromosome<T> *, double> *n) { delete n; });
+                      [](const std::pair<Chromosome<T> *, double> *p) { delete p; });
 
         delete contestants_results;
 

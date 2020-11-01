@@ -97,11 +97,11 @@ $(function() {
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        this-&gt;configuration = configuration;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        this-&gt;rngs = <span class="keyword">new</span> std::vector&lt;RandomNumberGenerator *&gt;(configuration-&gt;<a class="code" href="class_configuration.html#ad9f57884c7aa945aab147a377dff6e95">get_population_size</a>());</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        this-&gt;random_number_generators = <span class="keyword">new</span> std::vector&lt;RandomNumberGenerator *&gt;(configuration-&gt;<a class="code" href="class_configuration.html#ad9f57884c7aa945aab147a377dff6e95">get_population_size</a>());</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#pragma omp for</span></div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; configuration-&gt;<a class="code" href="class_configuration.html#ad9f57884c7aa945aab147a377dff6e95">get_population_size</a>(); i++) {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            rngs-&gt;at(i) = <span class="keyword">new</span> <a class="code" href="class_random_number_generator.html">RandomNumberGenerator</a>(</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            random_number_generators-&gt;at(i) = <span class="keyword">new</span> <a class="code" href="class_random_number_generator.html">RandomNumberGenerator</a>(</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                    initial_rnd.get_next(0, this-&gt;configuration-&gt;get_population_size()));</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        }</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
@@ -113,7 +113,7 @@ $(function() {
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#pragma omp for</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; this-&gt;configuration-&gt;<a class="code" href="class_configuration.html#ad9f57884c7aa945aab147a377dff6e95">get_population_size</a>(); i++) {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <a class="code" href="class_random_number_generator.html">RandomNumberGenerator</a> *rnd = this-&gt;rngs-&gt;at(i);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <a class="code" href="class_random_number_generator.html">RandomNumberGenerator</a> *rnd = this-&gt;random_number_generators-&gt;at(i);</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            std::vector&lt;T *&gt; *tmp_v;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
@@ -147,11 +147,11 @@ $(function() {
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#pragma omp for</span></div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; next_generation-&gt;size(); i++) {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keyword">auto</span> selected_chromosomes = perform_selection(this-&gt;rngs-&gt;at(i));</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <span class="keyword">auto</span> selected_chromosomes = perform_selection(this-&gt;random_number_generators-&gt;at(i));</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            next_generation-&gt;at(i) = this-&gt;perform_crossover(selected_chromosomes-&gt;first,</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                                                             selected_chromosomes-&gt;second,</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                                                             this-&gt;rngs-&gt;at(i));</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                                                             this-&gt;random_number_generators-&gt;at(i));</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            <span class="keyword">delete</span> selected_chromosomes;</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        }</div>
@@ -265,14 +265,14 @@ $(function() {
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                      [](<span class="keyword">const</span> std::pair&lt;<a class="code" href="class_chromosome.html">Chromosome&lt;T&gt;</a> *, <span class="keywordtype">double</span>&gt; *n) { delete n; });</div>
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        <span class="keyword">delete</span> this-&gt;current_scores;</div>
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        std::for_each(this-&gt;rngs-&gt;begin(), this-&gt;rngs-&gt;end(),</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        std::for_each(this-&gt;random_number_generators-&gt;begin(), this-&gt;random_number_generators-&gt;end(),</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;                      [](<span class="keyword">const</span> <a class="code" href="class_random_number_generator.html">RandomNumberGenerator</a> *n) { delete n; });</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <span class="keyword">delete</span> this-&gt;rngs;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <span class="keyword">delete</span> this-&gt;random_number_generators;</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    }</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    std::vector&lt;Chromosome&lt;T&gt; *&gt; *chromosomes;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    std::vector&lt;RandomNumberGenerator *&gt; *rngs{};</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    std::vector&lt;RandomNumberGenerator *&gt; *random_number_generators{};</div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_configuration.html">Configuration&lt;T&gt;</a> *configuration;</div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> current_generation{};</div>

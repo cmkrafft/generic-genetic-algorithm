@@ -9,3 +9,4 @@ Makefile
 bin/
 docs/
 GeneticAlgorithm.cbp
+lib/
