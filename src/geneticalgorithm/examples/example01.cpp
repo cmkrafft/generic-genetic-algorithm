@@ -108,6 +108,12 @@ int main() {
     delete c;
     delete c2;
 
+#ifdef USE_PARALLELISM
+    std::cout << "USE" << std::endl;
+#else
+    std::cout << "DON'T USE" << std::endl;
+#endif
+
     std::for_each(set->begin(), set->end(), [](const int *i) { delete i; });
     delete set;
 
