@@ -9,6 +9,7 @@
 
 /**
  * Fixed mode configuration for single point crossover method
+ * Using fixed mode, the chromosomes will be split at a fixed index.
  */
 class FixedMode : public AbstractSinglePointCrossoverConfigurationMode {
 public:

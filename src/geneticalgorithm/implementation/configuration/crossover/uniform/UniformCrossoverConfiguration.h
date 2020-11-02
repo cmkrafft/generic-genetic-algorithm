@@ -10,6 +10,7 @@
 
 /**
  * Uniform crossover configuration
+ * Using uniform crossover, alternately one segment of each chromosome will be inherited.
  */
 class UniformCrossoverConfiguration : public AbstractCrossoverConfiguration {
 public:

@@ -9,6 +9,7 @@
 
 /**
  * Random mode configuration for single point crossover method
+ * Using random mode, the split will be performed at a random index.
  */
 class RandomMode : public AbstractSinglePointCrossoverConfigurationMode {
 public:

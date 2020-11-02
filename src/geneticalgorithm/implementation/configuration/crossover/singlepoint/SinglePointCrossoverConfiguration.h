@@ -15,6 +15,7 @@ enum SinglePointCrossoverMode {
 
 /**
  * Configuration for single point crossover-method
+ * Using single point crossover, both chromosomes will be split at the same position and the fragments will be used to build a new chromosome.
  */
 class SinglePointCrossoverConfiguration : public AbstractCrossoverConfiguration {
 public:
