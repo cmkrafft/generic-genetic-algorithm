@@ -67,37 +67,18 @@ int main() {
 
     auto m = new MutationConfiguration(0.05);
 
-    auto avg_scores = new std::vector<double>();
-
-    auto config = const_cast<Configuration<int> *>(new Configuration<int>(fitness_function, set, 100, 10, s2, c2, m,
+    auto config = const_cast<Configuration<int> *>(new Configuration<int>(fitness_function, set, 100, 10, s2, c, m,
                                                                           to_string));
 
     auto population = new Population<int>(config);
 
-    avg_scores->push_back(population->get_avg_score());
-
-    const unsigned int n_iterations = 100;
-
-    for (int i = 0; i < n_iterations; i++) {
-        population->populate_next_generation();
-
-        avg_scores->push_back(population->get_avg_score());
-    }
+    population->populate_next_generations(100);
 
     auto best_results = population->get_best();
 
     std::cout << best_results->at(0)->to_string() << std::endl;
 
     delete best_results;
-
-    std::cout << "AVGs" << std::endl;
-
-    for (int i = 0; i < n_iterations; i++) {
-        std::cout << i << ": " << avg_scores->at(i) << std::endl;
-    }
-
-
-    delete avg_scores;
 
     delete config;
     delete population;

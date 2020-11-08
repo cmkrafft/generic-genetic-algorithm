@@ -66,24 +66,12 @@ int main() {
 
     auto m = new MutationConfiguration(0.00);
 
-    auto avg_scores = new std::vector<double>();
-
     auto config = const_cast<Configuration<char> *>(new Configuration<char>(fitness_function, set, 59, 10, s2, c2, m,
                                                                             to_string));
 
     auto population = new Population<char>(config);
 
-    avg_scores->push_back(population->get_avg_score());
-
-    const unsigned int n_iterations = 1000;
-
-    population->populate_next_generations(n_iterations);
-
-//    for (int i = 0; i < n_iterations; i++) {
-//        population->populate_next_generation();
-//
-//        avg_scores->push_back(population->get_avg_score());
-//    }
+    population->populate_next_generations(100);
 
     auto best_results = population->get_best();
 
@@ -91,20 +79,11 @@ int main() {
 
     delete best_results;
 
-    std::cout << "AVGs" << std::endl;
-
-    for (int i = 0; i < n_iterations; i++) {
-        std::cout << i << ": " << avg_scores->at(i) << std::endl;
-    }
-
     auto best = population->get_best();
 
     std::for_each(best->begin(), best->end(), [](Chromosome<char> * v) {
         v->print();
     });
-
-
-    delete avg_scores;
 
     delete config;
     delete population;

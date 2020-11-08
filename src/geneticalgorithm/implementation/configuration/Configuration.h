@@ -12,6 +12,7 @@
 #include "crossover/uniform/UniformCrossoverConfiguration.h"
 #include "mutation/MutationConfiguration.h"
 #include "selection/AbstractSelectionConfiguration.h"
+#include "crossover/singlepoint/mode/FixedMode.h"
 
 enum Selection {
     TOURNAMENT_SELECTION,
@@ -52,34 +53,6 @@ public:
                   std::string (*to_string)(const T *)) {
         this->n_chromosome = n_chromosome;
         this->n_population = n_population;
-        std::cout << "Initialized Population Configuration:" << std::endl;
-        std::cout << "Selection:\t";
-
-        if (dynamic_cast<const TournamentSelectionConfiguration *>(abstract_selection_configuration)) {
-            std::cout << "Tournament" << std::endl;
-            this->selection = TOURNAMENT_SELECTION;
-        } else if (dynamic_cast<const ProportionateSelectionConfiguration *>(abstract_selection_configuration)) {
-            std::cout << "Proportionate" << std::endl;
-            this->selection = PROPORTIONATE_SELECTION;
-        } else {
-            throw std::logic_error("No valid selection configuration provided.");
-        }
-
-        std::cout << "Crossover:\t";
-
-        if (dynamic_cast<const SinglePointCrossoverConfiguration *>(abstract_crossover_configuration)) {
-            std::cout << "Single Point" << std::endl;
-            this->crossover = SINGLE_POINT_CROSSOVER;
-
-            std::cout << "- Mode:\t\t"
-                      << (((SinglePointCrossoverConfiguration *) abstract_crossover_configuration)->get_mode() == FIXED
-                          ? "Fixed" : "Random") << std::endl;
-        } else if (dynamic_cast<const UniformCrossoverConfiguration *>(abstract_crossover_configuration)) {
-            std::cout << "Uniform" << std::endl;
-            this->crossover = UNIFORM_CROSSOVER;
-        } else {
-            throw std::logic_error("No valid crossover configuration provided.");
-        }
 
         this->selection_configuration = abstract_selection_configuration;
         this->crossover_configuration = abstract_crossover_configuration;
@@ -88,6 +61,65 @@ public:
         this->fitness_function = fitness_function;
         this->alleles = alleles;
         this->to_string = to_string;
+
+        std::cout << "-----------------------------------------------------------------------------------------------------------------" << std::endl;
+
+        std::cout << "Initialized Population Configuration:" << std::endl;
+
+        std::cout << "Possible alleles:\t";
+
+        std::cout << "[";
+
+        for (int i = 0; i < alleles->size(); i++) {
+            std::cout << to_string(alleles->at(i)) << (i != alleles->size() - 1 ? ", " : "");
+        }
+
+        std::cout << "]" << std::endl;
+
+        std::cout << "Selection:\t\t\t";
+
+        if (dynamic_cast<const TournamentSelectionConfiguration *>(abstract_selection_configuration)) {
+            std::cout << "Tournament" << std::endl;
+            std::cout << "- Contestants:\t\t"
+                      << ((TournamentSelectionConfiguration *) abstract_selection_configuration)->get_n_contestants()
+                      << std::endl;
+            this->selection = TOURNAMENT_SELECTION;
+        } else if (dynamic_cast<const ProportionateSelectionConfiguration *>(abstract_selection_configuration)) {
+            std::cout << "Proportionate" << std::endl;
+            std::cout << "- Contestants:\t\t"
+                      << ((ProportionateSelectionConfiguration *) abstract_selection_configuration)->get_n_contestants()
+                      << std::endl;
+            this->selection = PROPORTIONATE_SELECTION;
+        } else {
+            throw std::logic_error("No valid selection configuration provided.");
+        }
+
+        std::cout << "Crossover:\t\t\t";
+
+        if (dynamic_cast<const SinglePointCrossoverConfiguration *>(abstract_crossover_configuration)) {
+            std::cout << "Single Point" << std::endl;
+            this->crossover = SINGLE_POINT_CROSSOVER;
+
+            std::cout << "- Mode:\t\t\t\t"
+                      << (((SinglePointCrossoverConfiguration *) abstract_crossover_configuration)->get_mode() == FIXED
+                          ? "Fixed" : "Random") << std::endl;
+
+            if (((SinglePointCrossoverConfiguration *) abstract_crossover_configuration)->get_mode() == FIXED) {
+                std::cout << "-- Factor:\t\t\t"
+                          << ((FixedMode *) ((SinglePointCrossoverConfiguration *) abstract_crossover_configuration)->get_single_point_crossover_configuration())->get_crossover_factor()
+                          << std::endl;
+            }
+        } else if (dynamic_cast<const UniformCrossoverConfiguration *>(abstract_crossover_configuration)) {
+            std::cout << "Uniform" << std::endl;
+            this->crossover = UNIFORM_CROSSOVER;
+        } else {
+            throw std::logic_error("No valid crossover configuration provided.");
+        }
+
+        std::cout << "Mutation:" << std::endl;
+        std::cout << "- Rate:\t\t\t\t" << mutation_configuration->get_mutation_rate() << std::endl;
+
+        std::cout << "-----------------------------------------------------------------------------------------------------------------" << std::endl;
     }
 
     /**

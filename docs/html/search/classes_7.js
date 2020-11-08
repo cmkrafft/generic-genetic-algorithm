@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tournamentselectionconfiguration_55',['TournamentSelectionConfiguration',['../class_tournament_selection_configuration.html',1,'']]]
+  ['tournamentselectionconfiguration_57',['TournamentSelectionConfiguration',['../class_tournament_selection_configuration.html',1,'']]]
 ];

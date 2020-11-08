@@ -5,89 +5,46 @@
 #ifndef GENETICALGORITHM_PROGRESSBAR_H
 #define GENETICALGORITHM_PROGRESSBAR_H
 
-
-#include <iostream>
-#include <sstream>
-#include <iomanip>
-#include <cmath>
-
+/**
+ * Helper class to plot progress bar to stdout
+ */
 class ProgressBar {
 public:
+    /**
+     * Create ProgressBar object
+     */
     ProgressBar();
 
-    void init(long n_size) {
-        this->current_step = 0;
-        this->total_steps = n_size;
+    /**
+     * Initialize ProgressBar with given size, which will be interpreted as 100%
+     * @param n_size Total size
+     */
+    void init(long n_size);
 
-        std::cout << "[";
-
-        for (int i = 0; i < this->max; i++) {
-            std::cout << " ";
-        }
-
-        std::cout << "]";
-
-        append_percentage(0L);
-    }
-
-    void proceed(long n_steps) {
-        std::cout << "\r";
-
-        std::cout << std::flush;
-
-        this->current_step += n_steps;
-
-        auto share = (double) this->current_step / (double) this->total_steps * (double) max;
-
-        std::cout << "[";
-
-        for (int i = 0; i < share - 1; i++) {
-            std::cout << "=";
-        }
-
-        std::cout << ">";
-
-        fill(std::floor(this->max) - share);
-
-        append_percentage(share);
-
-        std::cout << std::flush;
-
-        if (this->current_step == this->total_steps) {
-            std::cout << std::endl;
-        }
-    }
+    /**
+     * Draw next n steps of progress
+     * @param n_steps Steps to draw
+     */
+    void proceed(long n_steps);
 
 private:
     const long max = 100;
     const int max_percentage_length = 6;
 
     long current_step = 0;
-    long total_steps;
+    long total_steps = -1;
 
-    void append_percentage(double percentage) const {
-        std::ostringstream s;
-        s << std::fixed;
-        s << std::setprecision(2);
-        s << percentage;
-        std::string p = s.str();
+    /**
+     * Append current percentage to the end of the progress bar
+     * @param percentage
+     */
+    void append_percentage(double percentage) const;
 
-        std::cout << " | ";
-
-        for (int i = 0; i < this->max_percentage_length - p.length(); i++) {
-            std::cout << " ";
-        }
-
-        std::cout << p << " %";
-    }
-
-    static void fill(long n_spaces) {
-        for (int i = 0; i < n_spaces; i++) {
-            std::cout << " ";
-        }
-
-        std::cout << "]";
-    }
+    /**
+     * Fill progress bar with given amount of spaces
+     * @param n_spaces Amount of spaces to insert
+     */
+    static void fill(long n_spaces);
 };
 
 
