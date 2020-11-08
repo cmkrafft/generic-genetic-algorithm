@@ -68,10 +68,14 @@ public:
 
                 tmp_fitness = (this->configuration->fitness_function)(tmp_v);
 
-                if (tmp_fitness == 0.0) {
+                if (tmp_fitness <= 0.0) {
                     delete tmp_v;
                 }
-            } while (tmp_fitness == 0.0);
+            } while (tmp_fitness <= 0.0);
+
+            if (tmp_fitness == -1.0) {
+                std::cout << "FOO" << std::endl;
+            }
 
             this->chromosomes->at(i) = new Chromosome<T>(
                     const_cast<std::vector<T *> * > (tmp_v),
@@ -386,24 +390,30 @@ private:
      */
     Chromosome<T> *perform_proportionate_selection(RandomNumberGenerator *rnd) const {
         auto results = this->current_scores;
-        auto scores = new std::vector<double>();
+        auto chromosomes_with_positive_scores = new std::vector<const std::pair<Chromosome<T> *, double> *>();
 
         std::for_each(results->begin(), results->end(),
-                      [&scores](const std::pair<Chromosome<T> *, double> *p) { scores->push_back(p->second); });
+                      [chromosomes_with_positive_scores](const std::pair<Chromosome<T> *, double> *p) {
+                          if (p->second > 0.0) {
+                              chromosomes_with_positive_scores->push_back(p);
+                          }
+                      });
 
-        double sum = std::accumulate(scores->begin(), scores->end(), 0.0);
-
-        delete scores;
+        double sum = std::accumulate(chromosomes_with_positive_scores->begin(), chromosomes_with_positive_scores->end(), 0.0, [](double accumulator, const std::pair<Chromosome<T> *, double> *p) {
+            return accumulator + p->second;
+        });
 
         auto rnd_share = rnd->get_next(0.0, sum);
 
-        for (int i = 0; i < this->chromosomes->size(); i++) {
-            if (this->chromosomes->at(i)->get_fitness() > rnd_share) {
-                return this->chromosomes->at(i);
+        for (int i = 0; i < chromosomes_with_positive_scores->size(); i++) {
+            if (chromosomes_with_positive_scores->at(i)->first->get_fitness() > rnd_share) {
+                return chromosomes_with_positive_scores->at(i)->first;
             }
 
-            rnd_share -= this->chromosomes->at(i)->get_fitness();
+            rnd_share -= chromosomes_with_positive_scores->at(i)->first->get_fitness();
         }
+
+        delete chromosomes_with_positive_scores;
 
         return (Chromosome<T> *) nullptr;
     }

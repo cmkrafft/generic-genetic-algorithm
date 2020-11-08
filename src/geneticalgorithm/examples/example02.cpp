@@ -68,7 +68,7 @@ int main() {
 
     auto avg_scores = new std::vector<double>();
 
-    auto config = const_cast<Configuration<char> *>(new Configuration<char>(fitness_function, set, 50, 10, s2, c, m,
+    auto config = const_cast<Configuration<char> *>(new Configuration<char>(fitness_function, set, 60, 10, s2, c, m,
                                                                             to_string));
 
     auto population = new Population<char>(config);
