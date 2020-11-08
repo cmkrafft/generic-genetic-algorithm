@@ -14,6 +14,7 @@
 #include "configuration/selection/tournament/TournamentSelectionConfiguration.h"
 #include "configuration/crossover/singlepoint/SinglePointCrossoverConfiguration.h"
 #include "configuration/crossover/singlepoint/mode/FixedMode.h"
+#include "utils/ProgressBar.h"
 
 /**
  * Generic representation of a population consisting of multiple Chromosomes
@@ -30,6 +31,8 @@ public:
     explicit Population(const Configuration<T> *configuration) {
         // TODO: Pass Seed!
         RandomNumberGenerator initial_rnd = RandomNumberGenerator();
+
+        this->progress_bar = new ProgressBar();
 
         this->configuration = configuration;
 
@@ -126,8 +129,11 @@ public:
      * @param n_generations Number of generations to be calculation
      */
     void populate_next_generations(const unsigned long &n_generations) {
+        this->progress_bar->init(n_generations);
+
         for (unsigned long i = 0; i < n_generations; i++) {
             this->populate_next_generation();
+            this->progress_bar->proceed(1);
         }
     }
 
@@ -248,12 +254,15 @@ public:
         std::for_each(this->random_number_generators->begin(), this->random_number_generators->end(),
                       [](const RandomNumberGenerator *n) { delete n; });
         delete this->random_number_generators;
+
+        delete this->progress_bar;
     }
 
 private:
     std::vector<Chromosome<T> *> *chromosomes;
     std::vector<RandomNumberGenerator *> *random_number_generators{};
     const Configuration<T> *configuration;
+    ProgressBar* progress_bar;
 
     unsigned long current_generation{};
 

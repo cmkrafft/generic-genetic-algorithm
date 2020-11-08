@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uniformcrossoverconfiguration_54',['UniformCrossoverConfiguration',['../class_uniform_crossover_configuration.html',1,'']]]
+  ['uniformcrossoverconfiguration_56',['UniformCrossoverConfiguration',['../class_uniform_crossover_configuration.html',1,'']]]
 ];

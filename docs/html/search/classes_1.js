@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['chromosome_44',['Chromosome',['../class_chromosome.html',1,'']]],
-  ['configuration_45',['Configuration',['../class_configuration.html',1,'']]]
+  ['chromosome_45',['Chromosome',['../class_chromosome.html',1,'']]],
+  ['configuration_46',['Configuration',['../class_configuration.html',1,'']]]
 ];

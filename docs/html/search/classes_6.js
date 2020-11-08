@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['singlepointcrossoverconfiguration_52',['SinglePointCrossoverConfiguration',['../class_single_point_crossover_configuration.html',1,'']]]
+  ['singlepointcrossoverconfiguration_54',['SinglePointCrossoverConfiguration',['../class_single_point_crossover_configuration.html',1,'']]]
 ];

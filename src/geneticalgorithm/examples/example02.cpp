@@ -68,20 +68,22 @@ int main() {
 
     auto avg_scores = new std::vector<double>();
 
-    auto config = const_cast<Configuration<char> *>(new Configuration<char>(fitness_function, set, 60, 10, s2, c, m,
+    auto config = const_cast<Configuration<char> *>(new Configuration<char>(fitness_function, set, 59, 10, s2, c2, m,
                                                                             to_string));
 
     auto population = new Population<char>(config);
 
     avg_scores->push_back(population->get_avg_score());
 
-    const unsigned int n_iterations = 50;
+    const unsigned int n_iterations = 1000;
 
-    for (int i = 0; i < n_iterations; i++) {
-        population->populate_next_generation();
+    population->populate_next_generations(n_iterations);
 
-        avg_scores->push_back(population->get_avg_score());
-    }
+//    for (int i = 0; i < n_iterations; i++) {
+//        population->populate_next_generation();
+//
+//        avg_scores->push_back(population->get_avg_score());
+//    }
 
     auto best_results = population->get_best();
 
