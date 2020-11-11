@@ -62,64 +62,23 @@ public:
         this->alleles = alleles;
         this->to_string = to_string;
 
-        std::cout << "-----------------------------------------------------------------------------------------------------------------" << std::endl;
-
-        std::cout << "Initialized Population Configuration:" << std::endl;
-
-        std::cout << "Possible alleles:\t";
-
-        std::cout << "[";
-
-        for (int i = 0; i < alleles->size(); i++) {
-            std::cout << to_string(alleles->at(i)) << (i != alleles->size() - 1 ? ", " : "");
-        }
-
-        std::cout << "]" << std::endl;
-
-        std::cout << "Selection:\t\t\t";
-
         if (dynamic_cast<const TournamentSelectionConfiguration *>(abstract_selection_configuration)) {
-            std::cout << "Tournament" << std::endl;
-            std::cout << "- Contestants:\t\t"
-                      << ((TournamentSelectionConfiguration *) abstract_selection_configuration)->get_n_contestants()
-                      << std::endl;
             this->selection = TOURNAMENT_SELECTION;
         } else if (dynamic_cast<const ProportionateSelectionConfiguration *>(abstract_selection_configuration)) {
-            std::cout << "Proportionate" << std::endl;
-            std::cout << "- Contestants:\t\t"
-                      << ((ProportionateSelectionConfiguration *) abstract_selection_configuration)->get_n_contestants()
-                      << std::endl;
             this->selection = PROPORTIONATE_SELECTION;
         } else {
             throw std::logic_error("No valid selection configuration provided.");
         }
 
-        std::cout << "Crossover:\t\t\t";
-
         if (dynamic_cast<const SinglePointCrossoverConfiguration *>(abstract_crossover_configuration)) {
-            std::cout << "Single Point" << std::endl;
             this->crossover = SINGLE_POINT_CROSSOVER;
-
-            std::cout << "- Mode:\t\t\t\t"
-                      << (((SinglePointCrossoverConfiguration *) abstract_crossover_configuration)->get_mode() == FIXED
-                          ? "Fixed" : "Random") << std::endl;
-
-            if (((SinglePointCrossoverConfiguration *) abstract_crossover_configuration)->get_mode() == FIXED) {
-                std::cout << "-- Factor:\t\t\t"
-                          << ((FixedMode *) ((SinglePointCrossoverConfiguration *) abstract_crossover_configuration)->get_single_point_crossover_configuration())->get_crossover_factor()
-                          << std::endl;
-            }
         } else if (dynamic_cast<const UniformCrossoverConfiguration *>(abstract_crossover_configuration)) {
-            std::cout << "Uniform" << std::endl;
             this->crossover = UNIFORM_CROSSOVER;
         } else {
             throw std::logic_error("No valid crossover configuration provided.");
         }
 
-        std::cout << "Mutation:" << std::endl;
-        std::cout << "- Rate:\t\t\t\t" << mutation_configuration->get_mutation_rate() << std::endl;
-
-        std::cout << "-----------------------------------------------------------------------------------------------------------------" << std::endl;
+        this->print_configuration();
     }
 
     /**
@@ -200,6 +159,57 @@ public:
     }
 
 private:
+    void print_configuration() {
+        std::cout << "-----------------------------------------------------------------------------------------------------------------" << std::endl;
+
+        std::cout << "Possible alleles:\t";
+
+        std::cout << "[";
+
+        for (int i = 0; i < alleles->size(); i++) {
+            std::cout << to_string(alleles->at(i)) << (i != alleles->size() - 1 ? ", " : "");
+        }
+
+        std::cout << "]" << std::endl;
+
+        std::cout << "Selection:\t\t\t";
+
+        if (this->selection == TOURNAMENT_SELECTION) {
+            std::cout << "Tournament" << std::endl;
+            std::cout << "- Contestants:\t\t"
+                      << ((TournamentSelectionConfiguration *) this->selection_configuration)->get_n_contestants()
+                      << std::endl;
+        } else if (selection == PROPORTIONATE_SELECTION) {
+            std::cout << "Proportionate" << std::endl;
+            std::cout << "- Contestants:\t\t"
+                      << ((ProportionateSelectionConfiguration *) this->selection_configuration)->get_n_contestants()
+                      << std::endl;
+        }
+
+        std::cout << "Crossover:\t\t\t";
+
+        if (crossover == SINGLE_POINT_CROSSOVER) {
+            std::cout << "Single Point" << std::endl;
+
+            std::cout << "- Mode:\t\t\t\t"
+                      << (((SinglePointCrossoverConfiguration *) this->crossover_configuration)->get_mode() == FIXED
+                          ? "Fixed" : "Random") << std::endl;
+
+            if (((SinglePointCrossoverConfiguration *) this->crossover_configuration)->get_mode() == FIXED) {
+                std::cout << "-- Factor:\t\t\t"
+                          << ((FixedMode *) ((SinglePointCrossoverConfiguration *) this->crossover_configuration)->get_single_point_crossover_configuration())->get_crossover_factor()
+                          << std::endl;
+            }
+        } else if (crossover == UNIFORM_CROSSOVER) {
+            std::cout << "Uniform" << std::endl;
+        }
+
+        std::cout << "Mutation:" << std::endl;
+        std::cout << "- Rate:\t\t\t\t" << mutation_configuration->get_mutation_rate() << std::endl;
+
+        std::cout << "-----------------------------------------------------------------------------------------------------------------" << std::endl;
+    }
+
     Selection selection{};
     Crossover crossover{};
 

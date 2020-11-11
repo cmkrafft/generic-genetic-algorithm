@@ -119,141 +119,151 @@ $(function() {
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        this-&gt;alleles = alleles;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        this-&gt;<a class="code" href="class_configuration.html#a7773ea40d9af80d2399f30822a164201">to_string</a> = <a class="code" href="class_configuration.html#a7773ea40d9af80d2399f30822a164201">to_string</a>;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-----------------------------------------------------------------------------------------------------------------&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Initialized Population Configuration:&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Possible alleles:\t&quot;</span>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;[&quot;</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">if</span> (<span class="keyword">dynamic_cast&lt;</span><span class="keyword">const </span><a class="code" href="class_tournament_selection_configuration.html">TournamentSelectionConfiguration</a> *<span class="keyword">&gt;</span>(abstract_selection_configuration)) {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            this-&gt;selection = TOURNAMENT_SELECTION;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="keyword">dynamic_cast&lt;</span><span class="keyword">const </span><a class="code" href="class_proportionate_selection_configuration.html">ProportionateSelectionConfiguration</a> *<span class="keyword">&gt;</span>(abstract_selection_configuration)) {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            this-&gt;selection = PROPORTIONATE_SELECTION;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keywordflow">throw</span> std::logic_error(<span class="stringliteral">&quot;No valid selection configuration provided.&quot;</span>);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        }</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; alleles-&gt;size(); i++) {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            std::cout &lt;&lt; <a class="code" href="class_configuration.html#a7773ea40d9af80d2399f30822a164201">to_string</a>(alleles-&gt;at(i)) &lt;&lt; (i != alleles-&gt;size() - 1 ? <span class="stringliteral">&quot;, &quot;</span> : <span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;]&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Selection:\t\t\t&quot;</span>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keywordflow">if</span> (<span class="keyword">dynamic_cast&lt;</span><span class="keyword">const </span><a class="code" href="class_single_point_crossover_configuration.html">SinglePointCrossoverConfiguration</a> *<span class="keyword">&gt;</span>(abstract_crossover_configuration)) {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            this-&gt;crossover = SINGLE_POINT_CROSSOVER;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="keyword">dynamic_cast&lt;</span><span class="keyword">const </span><a class="code" href="class_uniform_crossover_configuration.html">UniformCrossoverConfiguration</a> *<span class="keyword">&gt;</span>(abstract_crossover_configuration)) {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            this-&gt;crossover = UNIFORM_CROSSOVER;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keywordflow">throw</span> std::logic_error(<span class="stringliteral">&quot;No valid crossover configuration provided.&quot;</span>);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">if</span> (<span class="keyword">dynamic_cast&lt;</span><span class="keyword">const </span><a class="code" href="class_tournament_selection_configuration.html">TournamentSelectionConfiguration</a> *<span class="keyword">&gt;</span>(abstract_selection_configuration)) {</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;Tournament&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;- Contestants:\t\t&quot;</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                      &lt;&lt; ((<a class="code" href="class_tournament_selection_configuration.html">TournamentSelectionConfiguration</a> *) abstract_selection_configuration)-&gt;get_n_contestants()</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                      &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            this-&gt;selection = TOURNAMENT_SELECTION;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="keyword">dynamic_cast&lt;</span><span class="keyword">const </span><a class="code" href="class_proportionate_selection_configuration.html">ProportionateSelectionConfiguration</a> *<span class="keyword">&gt;</span>(abstract_selection_configuration)) {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;Proportionate&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;- Contestants:\t\t&quot;</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                      &lt;&lt; ((<a class="code" href="class_proportionate_selection_configuration.html">ProportionateSelectionConfiguration</a> *) abstract_selection_configuration)-&gt;get_n_contestants()</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                      &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            this-&gt;selection = PROPORTIONATE_SELECTION;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="keywordflow">throw</span> std::logic_error(<span class="stringliteral">&quot;No valid selection configuration provided.&quot;</span>);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Crossover:\t\t\t&quot;</span>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <span class="keywordflow">if</span> (<span class="keyword">dynamic_cast&lt;</span><span class="keyword">const </span><a class="code" href="class_single_point_crossover_configuration.html">SinglePointCrossoverConfiguration</a> *<span class="keyword">&gt;</span>(abstract_crossover_configuration)) {</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;Single Point&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;            this-&gt;crossover = SINGLE_POINT_CROSSOVER;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;- Mode:\t\t\t\t&quot;</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                      &lt;&lt; (((<a class="code" href="class_single_point_crossover_configuration.html">SinglePointCrossoverConfiguration</a> *) abstract_crossover_configuration)-&gt;get_mode() == FIXED</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                          ? <span class="stringliteral">&quot;Fixed&quot;</span> : <span class="stringliteral">&quot;Random&quot;</span>) &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="keywordflow">if</span> (((<a class="code" href="class_single_point_crossover_configuration.html">SinglePointCrossoverConfiguration</a> *) abstract_crossover_configuration)-&gt;get_mode() == FIXED) {</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;-- Factor:\t\t\t&quot;</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                          &lt;&lt; ((<a class="code" href="class_fixed_mode.html">FixedMode</a> *) ((<a class="code" href="class_single_point_crossover_configuration.html">SinglePointCrossoverConfiguration</a> *) abstract_crossover_configuration)-&gt;get_single_point_crossover_configuration())-&gt;get_crossover_factor()</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                          &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            }</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<span class="keyword">dynamic_cast&lt;</span><span class="keyword">const </span><a class="code" href="class_uniform_crossover_configuration.html">UniformCrossoverConfiguration</a> *<span class="keyword">&gt;</span>(abstract_crossover_configuration)) {</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;Uniform&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            this-&gt;crossover = UNIFORM_CROSSOVER;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            <span class="keywordflow">throw</span> std::logic_error(<span class="stringliteral">&quot;No valid crossover configuration provided.&quot;</span>);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        }</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Mutation:&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;- Rate:\t\t\t\t&quot;</span> &lt;&lt; mutation_configuration-&gt;<a class="code" href="class_mutation_configuration.html#a1bf934014bfdd4b4f1d1960103af83a2">get_mutation_rate</a>() &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-----------------------------------------------------------------------------------------------------------------&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    }</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
-<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="class_configuration.html#a44fea71c7d5e6399a64aa3fc27979ddd">  129</a></span>&#160;    [[nodiscard]] Selection <a class="code" href="class_configuration.html#a44fea71c7d5e6399a64aa3fc27979ddd">get_selection_type</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keywordflow">return</span> this-&gt;selection;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    }</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="class_configuration.html#a33fa9513147023119078a8fc5690cedb">  137</a></span>&#160;    [[nodiscard]] Crossover <a class="code" href="class_configuration.html#a33fa9513147023119078a8fc5690cedb">get_crossover_type</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keywordflow">return</span> this-&gt;crossover;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    }</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
-<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="class_configuration.html#a33c3029765d4d8d4a107ba7d72496b36">  145</a></span>&#160;    [[nodiscard]] <span class="keyword">const</span> <a class="code" href="class_abstract_selection_configuration.html">AbstractSelectionConfiguration</a> *<a class="code" href="class_configuration.html#a33c3029765d4d8d4a107ba7d72496b36">get_selection_configuration</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="keywordflow">return</span> this-&gt;selection_configuration;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    }</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
-<div class="line"><a name="l00153"></a><span class="lineno"><a class="line" href="class_configuration.html#ab002e077b6ce3d8fe5c5d08e5ba511ae">  153</a></span>&#160;    [[nodiscard]] <span class="keyword">const</span> <a class="code" href="class_abstract_crossover_configuration.html">AbstractCrossoverConfiguration</a> *<a class="code" href="class_configuration.html#ab002e077b6ce3d8fe5c5d08e5ba511ae">get_crossover_configuration</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <span class="keywordflow">return</span> this-&gt;crossover_configuration;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    }</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160; </div>
-<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="class_configuration.html#a4727e1ee69043421d2e4eba5149302c2">  161</a></span>&#160;    [[nodiscard]] <span class="keyword">const</span> <a class="code" href="class_mutation_configuration.html">MutationConfiguration</a> *<a class="code" href="class_configuration.html#a4727e1ee69043421d2e4eba5149302c2">get_mutation_configuration</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <span class="keywordflow">return</span> this-&gt;mutation_configuration;</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        this-&gt;print_configuration();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="class_configuration.html#a44fea71c7d5e6399a64aa3fc27979ddd">   88</a></span>&#160;    [[nodiscard]] Selection <a class="code" href="class_configuration.html#a44fea71c7d5e6399a64aa3fc27979ddd">get_selection_type</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordflow">return</span> this-&gt;selection;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="class_configuration.html#a33fa9513147023119078a8fc5690cedb">   96</a></span>&#160;    [[nodiscard]] Crossover <a class="code" href="class_configuration.html#a33fa9513147023119078a8fc5690cedb">get_crossover_type</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">return</span> this-&gt;crossover;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="class_configuration.html#a33c3029765d4d8d4a107ba7d72496b36">  104</a></span>&#160;    [[nodiscard]] <span class="keyword">const</span> <a class="code" href="class_abstract_selection_configuration.html">AbstractSelectionConfiguration</a> *<a class="code" href="class_configuration.html#a33c3029765d4d8d4a107ba7d72496b36">get_selection_configuration</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">return</span> this-&gt;selection_configuration;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="class_configuration.html#ab002e077b6ce3d8fe5c5d08e5ba511ae">  112</a></span>&#160;    [[nodiscard]] <span class="keyword">const</span> <a class="code" href="class_abstract_crossover_configuration.html">AbstractCrossoverConfiguration</a> *<a class="code" href="class_configuration.html#ab002e077b6ce3d8fe5c5d08e5ba511ae">get_crossover_configuration</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">return</span> this-&gt;crossover_configuration;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="class_configuration.html#a4727e1ee69043421d2e4eba5149302c2">  120</a></span>&#160;    [[nodiscard]] <span class="keyword">const</span> <a class="code" href="class_mutation_configuration.html">MutationConfiguration</a> *<a class="code" href="class_configuration.html#a4727e1ee69043421d2e4eba5149302c2">get_mutation_configuration</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keywordflow">return</span> this-&gt;mutation_configuration;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="class_configuration.html#a904e1811a3d0f0a33ebc98a07855d550">  128</a></span>&#160;    <span class="keyword">const</span> std::vector&lt;T *&gt; *<a class="code" href="class_configuration.html#a904e1811a3d0f0a33ebc98a07855d550">get_alleles</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keywordflow">return</span> this-&gt;alleles;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    }</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="class_configuration.html#a254d5aeff08c48fa2f88e4b5208834d9">  136</a></span>&#160;    double (*<a class="code" href="class_configuration.html#a254d5aeff08c48fa2f88e4b5208834d9">fitness_function</a>)(<span class="keyword">const</span> std::vector&lt;T *&gt; *);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00143"></a><span class="lineno"><a class="line" href="class_configuration.html#a7773ea40d9af80d2399f30822a164201">  143</a></span>&#160;    std::string (*<a class="code" href="class_configuration.html#a7773ea40d9af80d2399f30822a164201">to_string</a>)(<span class="keyword">const</span> T *v);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno"><a class="line" href="class_configuration.html#ad9f57884c7aa945aab147a377dff6e95">  149</a></span>&#160;    [[nodiscard]] <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="class_configuration.html#ad9f57884c7aa945aab147a377dff6e95">get_population_size</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <span class="keywordflow">return</span> this-&gt;n_population;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    }</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="class_configuration.html#afdf2a53c5cd7c27f54fb51aa4689172b">  157</a></span>&#160;    [[nodiscard]] <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="class_configuration.html#afdf2a53c5cd7c27f54fb51aa4689172b">get_chromosome_size</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keywordflow">return</span> this-&gt;n_chromosome;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    }</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordtype">void</span> print_configuration() {</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-----------------------------------------------------------------------------------------------------------------&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160; </div>
-<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="class_configuration.html#a904e1811a3d0f0a33ebc98a07855d550">  169</a></span>&#160;    <span class="keyword">const</span> std::vector&lt;T *&gt; *<a class="code" href="class_configuration.html#a904e1811a3d0f0a33ebc98a07855d550">get_alleles</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        <span class="keywordflow">return</span> this-&gt;alleles;</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Possible alleles:\t&quot;</span>;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160; </div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;[&quot;</span>;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; alleles-&gt;size(); i++) {</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            std::cout &lt;&lt; <a class="code" href="class_configuration.html#a7773ea40d9af80d2399f30822a164201">to_string</a>(alleles-&gt;at(i)) &lt;&lt; (i != alleles-&gt;size() - 1 ? <span class="stringliteral">&quot;, &quot;</span> : <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        }</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
-<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="class_configuration.html#a254d5aeff08c48fa2f88e4b5208834d9">  177</a></span>&#160;    double (*<a class="code" href="class_configuration.html#a254d5aeff08c48fa2f88e4b5208834d9">fitness_function</a>)(<span class="keyword">const</span> std::vector&lt;T *&gt; *);</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
-<div class="line"><a name="l00184"></a><span class="lineno"><a class="line" href="class_configuration.html#a7773ea40d9af80d2399f30822a164201">  184</a></span>&#160;    std::string (*<a class="code" href="class_configuration.html#a7773ea40d9af80d2399f30822a164201">to_string</a>)(<span class="keyword">const</span> T *v);</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160; </div>
-<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="class_configuration.html#ad9f57884c7aa945aab147a377dff6e95">  190</a></span>&#160;    [[nodiscard]] <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="class_configuration.html#ad9f57884c7aa945aab147a377dff6e95">get_population_size</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <span class="keywordflow">return</span> this-&gt;n_population;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    }</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;]&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160; </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Selection:\t\t\t&quot;</span>;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="keywordflow">if</span> (this-&gt;selection == TOURNAMENT_SELECTION) {</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;Tournament&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;- Contestants:\t\t&quot;</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;                      &lt;&lt; ((<a class="code" href="class_tournament_selection_configuration.html">TournamentSelectionConfiguration</a> *) this-&gt;selection_configuration)-&gt;get_n_contestants()</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;                      &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (selection == PROPORTIONATE_SELECTION) {</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;Proportionate&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;- Contestants:\t\t&quot;</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;                      &lt;&lt; ((<a class="code" href="class_proportionate_selection_configuration.html">ProportionateSelectionConfiguration</a> *) this-&gt;selection_configuration)-&gt;get_n_contestants()</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;                      &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        }</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Crossover:\t\t\t&quot;</span>;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <span class="keywordflow">if</span> (crossover == SINGLE_POINT_CROSSOVER) {</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;Single Point&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
-<div class="line"><a name="l00198"></a><span class="lineno"><a class="line" href="class_configuration.html#afdf2a53c5cd7c27f54fb51aa4689172b">  198</a></span>&#160;    [[nodiscard]] <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="class_configuration.html#afdf2a53c5cd7c27f54fb51aa4689172b">get_chromosome_size</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        <span class="keywordflow">return</span> this-&gt;n_chromosome;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    }</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160; </div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    Selection selection{};</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    Crossover crossover{};</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160; </div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> n_population{};</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> n_chromosome{};</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_abstract_selection_configuration.html">AbstractSelectionConfiguration</a> *selection_configuration{};</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_abstract_crossover_configuration.html">AbstractCrossoverConfiguration</a> *crossover_configuration{};</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160; </div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_mutation_configuration.html">MutationConfiguration</a> *mutation_configuration{};</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keyword">const</span> std::vector&lt;T *&gt; *alleles;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;};</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="preprocessor">#endif //GENETICALGORITHM_CONFIGURATION_H</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;- Mode:\t\t\t\t&quot;</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;                      &lt;&lt; (((<a class="code" href="class_single_point_crossover_configuration.html">SinglePointCrossoverConfiguration</a> *) this-&gt;crossover_configuration)-&gt;get_mode() == FIXED</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;                          ? <span class="stringliteral">&quot;Fixed&quot;</span> : <span class="stringliteral">&quot;Random&quot;</span>) &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <span class="keywordflow">if</span> (((<a class="code" href="class_single_point_crossover_configuration.html">SinglePointCrossoverConfiguration</a> *) this-&gt;crossover_configuration)-&gt;get_mode() == FIXED) {</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                std::cout &lt;&lt; <span class="stringliteral">&quot;-- Factor:\t\t\t&quot;</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                          &lt;&lt; ((<a class="code" href="class_fixed_mode.html">FixedMode</a> *) ((<a class="code" href="class_single_point_crossover_configuration.html">SinglePointCrossoverConfiguration</a> *) this-&gt;crossover_configuration)-&gt;get_single_point_crossover_configuration())-&gt;get_crossover_factor()</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                          &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            }</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (crossover == UNIFORM_CROSSOVER) {</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;            std::cout &lt;&lt; <span class="stringliteral">&quot;Uniform&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        }</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160; </div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;Mutation:&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;- Rate:\t\t\t\t&quot;</span> &lt;&lt; mutation_configuration-&gt;<a class="code" href="class_mutation_configuration.html#a1bf934014bfdd4b4f1d1960103af83a2">get_mutation_rate</a>() &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;-----------------------------------------------------------------------------------------------------------------&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    }</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    Selection selection{};</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    Crossover crossover{};</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160; </div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> n_population{};</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> n_chromosome{};</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_abstract_selection_configuration.html">AbstractSelectionConfiguration</a> *selection_configuration{};</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_abstract_crossover_configuration.html">AbstractCrossoverConfiguration</a> *crossover_configuration{};</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160; </div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_mutation_configuration.html">MutationConfiguration</a> *mutation_configuration{};</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160; </div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="keyword">const</span> std::vector&lt;T *&gt; *alleles;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;};</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160; </div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="preprocessor">#endif //GENETICALGORITHM_CONFIGURATION_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclass_uniform_crossover_configuration_html"><div class="ttname"><a href="class_uniform_crossover_configuration.html">UniformCrossoverConfiguration</a></div><div class="ttdef"><b>Definition:</b> UniformCrossoverConfiguration.h:15</div></div>
 <div class="ttc" id="aclass_abstract_crossover_configuration_html"><div class="ttname"><a href="class_abstract_crossover_configuration.html">AbstractCrossoverConfiguration</a></div><div class="ttdef"><b>Definition:</b> AbstractCrossoverConfiguration.h:11</div></div>
 <div class="ttc" id="aclass_configuration_html_a27295617fb9735a757d7b65c6902fdf9"><div class="ttname"><a href="class_configuration.html#a27295617fb9735a757d7b65c6902fdf9">Configuration::Configuration</a></div><div class="ttdeci">Configuration(double(*fitness_function)(const std::vector&lt; T * &gt; *), const std::vector&lt; T * &gt; *alleles, unsigned long n_population, unsigned long n_chromosome, const AbstractSelectionConfiguration *abstract_selection_configuration, const AbstractCrossoverConfiguration *abstract_crossover_configuration, const MutationConfiguration *mutation_configuration, std::string(*to_string)(const T *))</div><div class="ttdef"><b>Definition:</b> Configuration.h:46</div></div>
-<div class="ttc" id="aclass_configuration_html_a4727e1ee69043421d2e4eba5149302c2"><div class="ttname"><a href="class_configuration.html#a4727e1ee69043421d2e4eba5149302c2">Configuration::get_mutation_configuration</a></div><div class="ttdeci">const MutationConfiguration * get_mutation_configuration() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:161</div></div>
-<div class="ttc" id="aclass_configuration_html_afdf2a53c5cd7c27f54fb51aa4689172b"><div class="ttname"><a href="class_configuration.html#afdf2a53c5cd7c27f54fb51aa4689172b">Configuration::get_chromosome_size</a></div><div class="ttdeci">unsigned long get_chromosome_size() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:198</div></div>
-<div class="ttc" id="aclass_configuration_html_a44fea71c7d5e6399a64aa3fc27979ddd"><div class="ttname"><a href="class_configuration.html#a44fea71c7d5e6399a64aa3fc27979ddd">Configuration::get_selection_type</a></div><div class="ttdeci">Selection get_selection_type() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:129</div></div>
-<div class="ttc" id="aclass_configuration_html_ad9f57884c7aa945aab147a377dff6e95"><div class="ttname"><a href="class_configuration.html#ad9f57884c7aa945aab147a377dff6e95">Configuration::get_population_size</a></div><div class="ttdeci">unsigned long get_population_size() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:190</div></div>
+<div class="ttc" id="aclass_configuration_html_a4727e1ee69043421d2e4eba5149302c2"><div class="ttname"><a href="class_configuration.html#a4727e1ee69043421d2e4eba5149302c2">Configuration::get_mutation_configuration</a></div><div class="ttdeci">const MutationConfiguration * get_mutation_configuration() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:120</div></div>
+<div class="ttc" id="aclass_configuration_html_afdf2a53c5cd7c27f54fb51aa4689172b"><div class="ttname"><a href="class_configuration.html#afdf2a53c5cd7c27f54fb51aa4689172b">Configuration::get_chromosome_size</a></div><div class="ttdeci">unsigned long get_chromosome_size() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:157</div></div>
+<div class="ttc" id="aclass_configuration_html_a44fea71c7d5e6399a64aa3fc27979ddd"><div class="ttname"><a href="class_configuration.html#a44fea71c7d5e6399a64aa3fc27979ddd">Configuration::get_selection_type</a></div><div class="ttdeci">Selection get_selection_type() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:88</div></div>
+<div class="ttc" id="aclass_configuration_html_ad9f57884c7aa945aab147a377dff6e95"><div class="ttname"><a href="class_configuration.html#ad9f57884c7aa945aab147a377dff6e95">Configuration::get_population_size</a></div><div class="ttdeci">unsigned long get_population_size() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:149</div></div>
 <div class="ttc" id="aclass_single_point_crossover_configuration_html"><div class="ttname"><a href="class_single_point_crossover_configuration.html">SinglePointCrossoverConfiguration</a></div><div class="ttdef"><b>Definition:</b> SinglePointCrossoverConfiguration.h:20</div></div>
 <div class="ttc" id="aclass_configuration_html"><div class="ttname"><a href="class_configuration.html">Configuration</a></div><div class="ttdef"><b>Definition:</b> Configuration.h:32</div></div>
 <div class="ttc" id="aclass_fixed_mode_html"><div class="ttname"><a href="class_fixed_mode.html">FixedMode</a></div><div class="ttdef"><b>Definition:</b> FixedMode.h:14</div></div>
 <div class="ttc" id="aclass_tournament_selection_configuration_html"><div class="ttname"><a href="class_tournament_selection_configuration.html">TournamentSelectionConfiguration</a></div><div class="ttdef"><b>Definition:</b> TournamentSelectionConfiguration.h:14</div></div>
-<div class="ttc" id="aclass_configuration_html_a33fa9513147023119078a8fc5690cedb"><div class="ttname"><a href="class_configuration.html#a33fa9513147023119078a8fc5690cedb">Configuration::get_crossover_type</a></div><div class="ttdeci">Crossover get_crossover_type() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:137</div></div>
-<div class="ttc" id="aclass_configuration_html_a7773ea40d9af80d2399f30822a164201"><div class="ttname"><a href="class_configuration.html#a7773ea40d9af80d2399f30822a164201">Configuration::to_string</a></div><div class="ttdeci">std::string(* to_string)(const T *v)</div><div class="ttdef"><b>Definition:</b> Configuration.h:184</div></div>
-<div class="ttc" id="aclass_configuration_html_ab002e077b6ce3d8fe5c5d08e5ba511ae"><div class="ttname"><a href="class_configuration.html#ab002e077b6ce3d8fe5c5d08e5ba511ae">Configuration::get_crossover_configuration</a></div><div class="ttdeci">const AbstractCrossoverConfiguration * get_crossover_configuration() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:153</div></div>
+<div class="ttc" id="aclass_configuration_html_a33fa9513147023119078a8fc5690cedb"><div class="ttname"><a href="class_configuration.html#a33fa9513147023119078a8fc5690cedb">Configuration::get_crossover_type</a></div><div class="ttdeci">Crossover get_crossover_type() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:96</div></div>
+<div class="ttc" id="aclass_configuration_html_a7773ea40d9af80d2399f30822a164201"><div class="ttname"><a href="class_configuration.html#a7773ea40d9af80d2399f30822a164201">Configuration::to_string</a></div><div class="ttdeci">std::string(* to_string)(const T *v)</div><div class="ttdef"><b>Definition:</b> Configuration.h:143</div></div>
+<div class="ttc" id="aclass_configuration_html_ab002e077b6ce3d8fe5c5d08e5ba511ae"><div class="ttname"><a href="class_configuration.html#ab002e077b6ce3d8fe5c5d08e5ba511ae">Configuration::get_crossover_configuration</a></div><div class="ttdeci">const AbstractCrossoverConfiguration * get_crossover_configuration() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:112</div></div>
 <div class="ttc" id="aclass_proportionate_selection_configuration_html"><div class="ttname"><a href="class_proportionate_selection_configuration.html">ProportionateSelectionConfiguration</a></div><div class="ttdef"><b>Definition:</b> ProportionateSelectionConfiguration.h:13</div></div>
-<div class="ttc" id="aclass_configuration_html_a33c3029765d4d8d4a107ba7d72496b36"><div class="ttname"><a href="class_configuration.html#a33c3029765d4d8d4a107ba7d72496b36">Configuration::get_selection_configuration</a></div><div class="ttdeci">const AbstractSelectionConfiguration * get_selection_configuration() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:145</div></div>
+<div class="ttc" id="aclass_configuration_html_a33c3029765d4d8d4a107ba7d72496b36"><div class="ttname"><a href="class_configuration.html#a33c3029765d4d8d4a107ba7d72496b36">Configuration::get_selection_configuration</a></div><div class="ttdeci">const AbstractSelectionConfiguration * get_selection_configuration() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:104</div></div>
 <div class="ttc" id="aclass_abstract_selection_configuration_html"><div class="ttname"><a href="class_abstract_selection_configuration.html">AbstractSelectionConfiguration</a></div><div class="ttdef"><b>Definition:</b> AbstractSelectionConfiguration.h:11</div></div>
 <div class="ttc" id="aclass_mutation_configuration_html_a1bf934014bfdd4b4f1d1960103af83a2"><div class="ttname"><a href="class_mutation_configuration.html#a1bf934014bfdd4b4f1d1960103af83a2">MutationConfiguration::get_mutation_rate</a></div><div class="ttdeci">float get_mutation_rate() const</div><div class="ttdef"><b>Definition:</b> MutationConfiguration.cpp:11</div></div>
 <div class="ttc" id="aclass_mutation_configuration_html"><div class="ttname"><a href="class_mutation_configuration.html">MutationConfiguration</a></div><div class="ttdef"><b>Definition:</b> MutationConfiguration.h:11</div></div>
-<div class="ttc" id="aclass_configuration_html_a904e1811a3d0f0a33ebc98a07855d550"><div class="ttname"><a href="class_configuration.html#a904e1811a3d0f0a33ebc98a07855d550">Configuration::get_alleles</a></div><div class="ttdeci">const std::vector&lt; T * &gt; * get_alleles() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:169</div></div>
-<div class="ttc" id="aclass_configuration_html_a254d5aeff08c48fa2f88e4b5208834d9"><div class="ttname"><a href="class_configuration.html#a254d5aeff08c48fa2f88e4b5208834d9">Configuration::fitness_function</a></div><div class="ttdeci">double(* fitness_function)(const std::vector&lt; T * &gt; *)</div><div class="ttdef"><b>Definition:</b> Configuration.h:177</div></div>
+<div class="ttc" id="aclass_configuration_html_a904e1811a3d0f0a33ebc98a07855d550"><div class="ttname"><a href="class_configuration.html#a904e1811a3d0f0a33ebc98a07855d550">Configuration::get_alleles</a></div><div class="ttdeci">const std::vector&lt; T * &gt; * get_alleles() const</div><div class="ttdef"><b>Definition:</b> Configuration.h:128</div></div>
+<div class="ttc" id="aclass_configuration_html_a254d5aeff08c48fa2f88e4b5208834d9"><div class="ttname"><a href="class_configuration.html#a254d5aeff08c48fa2f88e4b5208834d9">Configuration::fitness_function</a></div><div class="ttdeci">double(* fitness_function)(const std::vector&lt; T * &gt; *)</div><div class="ttdef"><b>Definition:</b> Configuration.h:136</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
