@@ -33,12 +33,6 @@ ELSE ()
     MESSAGE("Building without OpenMP")
 ENDIF ()
 
-#install(TARGETS GeneticAlgorithmLib
-#        LIBRARY DESTINATION lib)
-#
-#install(FILES ${PUBLIC_HEADERS}
-#        DESTINATION ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/include/GeneticAlgorithmLib)
-
 SET_TARGET_PROPERTIES(GeneticAlgorithmLib PROPERTIES PUBLIC_HEADER "Chromosome.h;Population.h;utils/ProgressBar.h;utils/RandomNumberGenerator.h;configuration/Configuration.h;configuration/crossover/AbstractCrossoverConfiguration.h;configuration/crossover/singlepoint/SinglePointCrossoverConfiguration.h;configuration/crossover/singlepoint/mode/AbstractSinglePointCrossoverConfigurationMode.h;configuration/crossover/singlepoint/mode/FixedMode.h;configuration/crossover/singlepoint/mode/RandomMode.h;configuration/crossover/uniform/UniformCrossoverConfiguration.h;configuration/mutation/MutationConfiguration.h;configuration/selection/AbstractSelectionConfiguration.h;configuration/selection/proportionate/ProportionateSelectionConfiguration.h;configuration/selection/tournament/TournamentSelectionConfiguration.h")
 
 SET(HEADER_FILES Chromosome.h Population.h utils/ProgressBar.h utils/RandomNumberGenerator.h configuration/Configuration.h configuration/crossover/AbstractCrossoverConfiguration.h configuration/crossover/singlepoint/SinglePointCrossoverConfiguration.h configuration/crossover/singlepoint/mode/AbstractSinglePointCrossoverConfigurationMode.h configuration/crossover/singlepoint/mode/FixedMode.h configuration/crossover/singlepoint/mode/RandomMode.h configuration/crossover/uniform/UniformCrossoverConfiguration.h configuration/mutation/MutationConfiguration.h configuration/selection/AbstractSelectionConfiguration.h configuration/selection/proportionate/ProportionateSelectionConfiguration.h configuration/selection/tournament/TournamentSelectionConfiguration.h)
@@ -67,24 +61,5 @@ ADD_CUSTOM_TARGET(
 )
 
 INCLUDE_DIRECTORIES(${CMAKE_INCLUDE_OUTPUT_DIRECTORY})
-
-#install(TARGETS GeneticAlgorithmLib
-#        LIBRARY DESTINATION ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
-#        #PUBLIC_HEADER DESTINATION ${CMAKE_INCLUDE_OUTPUT_DIRECTORY}
-#        )
-#
-#install(FILES Population.h Chromosome.h DESTINATION ${CMAKE_INCLUDE_OUTPUT_DIRECTORY})
-#
-#install(DIRECTORY ${CMAKE_CURRENT_PATH}/configuration # source directory
-#        DESTINATION ${CMAKE_INCLUDE_OUTPUT_DIRECTORY} # target directory
-#        FILES_MATCHING # install only matched files
-#        PATTERN "*.h" # select header files
-#        )
-#
-#install(DIRECTORY ${CMAKE_CURRENT_PATH}/utils # source directory
-#        DESTINATION ${CMAKE_INCLUDE_OUTPUT_DIRECTORY} # target directory
-#        FILES_MATCHING # install only matched files
-#        PATTERN "*.h" # select header files
-#        )
 
 ADD_CUSTOM_TARGET(library DEPENDS GeneticAlgorithmLib)
