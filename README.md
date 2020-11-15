@@ -1,4 +1,4 @@
-# Genetic Algorithm
+# Generic Genetic Algorithm
 
 This project contains both the implementation of a generic genetic algorithm library and various examples.
 
@@ -150,7 +150,7 @@ std::cout << best_results->at(0)->to_string() << ": " << best_results->at(0)->ge
 Executing the whole program will generate the following output:
 
 ```text
------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------
 Possible alleles:       [0, 1]
 Selection:              Tournament
 - Contestants:          2
@@ -159,8 +159,8 @@ Crossover:              Single Point
 -- Factor:              0.5
 Mutation:
 - Rate:                 0.05
------------------------------------------------------------------------------------------------------------------
-[===================================================================================================>] | 100.00 %
+------------------------------------------------------------------------------
+[================================================================>] | 100.00 %
 [0, 0, 0, 1, 0, 0, 0, 1, 1, 1]: 11.5
 ```
 
