@@ -19,15 +19,17 @@ ENDIF ()
 
 ADD_EXECUTABLE(example01 example01.cpp)
 ADD_EXECUTABLE(example02 example02.cpp)
+ADD_EXECUTABLE(example03 example03.cpp)
 
 SET(HEADER_FILES ${CMAKE_INCLUDE_OUTPUT_DIRECTORY}/Chromosome.h ${CMAKE_INCLUDE_OUTPUT_DIRECTORY}/Population.h ${CMAKE_INCLUDE_OUTPUT_DIRECTORY}/RandomNumberGenerator.h ${CMAKE_INCLUDE_OUTPUT_DIRECTORY}/Configuration.h ${CMAKE_INCLUDE_OUTPUT_DIRECTORY}/AbstractCrossoverConfiguration.h ${CMAKE_INCLUDE_OUTPUT_DIRECTORY}/SinglePointCrossoverConfiguration.h ${CMAKE_INCLUDE_OUTPUT_DIRECTORY}/AbstractSinglePointCrossoverConfigurationMode.h ${CMAKE_INCLUDE_OUTPUT_DIRECTORY}/FixedMode.h ${CMAKE_INCLUDE_OUTPUT_DIRECTORY}/RandomMode.h ${CMAKE_INCLUDE_OUTPUT_DIRECTORY}/UniformCrossoverConfiguration.h ${CMAKE_INCLUDE_OUTPUT_DIRECTORY}/MutationConfiguration.h ${CMAKE_INCLUDE_OUTPUT_DIRECTORY}/AbstractSelectionConfiguration.h ${CMAKE_INCLUDE_OUTPUT_DIRECTORY}/ProportionateSelectionConfiguration.h ${CMAKE_INCLUDE_OUTPUT_DIRECTORY}/TournamentSelectionConfiguration.h)
 
-SET(SOURCES example01.cpp example02.cpp)
+SET(SOURCES example01.cpp example02.cpp example03.cpp)
 
 #target_link_libraries(GeneticAlgorithm LINK_PUBLIC GeneticAlgorithmLib)
 
 TARGET_LINK_LIBRARIES(example01 ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libGeneticAlgorithmLib.a)
 TARGET_LINK_LIBRARIES(example02 ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libGeneticAlgorithmLib.a)
+TARGET_LINK_LIBRARIES(example03 ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/libGeneticAlgorithmLib.a)
 
 INCLUDE_DIRECTORIES(${CMAKE_INCLUDE_OUTPUT_DIRECTORY})
 

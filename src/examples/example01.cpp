@@ -8,32 +8,32 @@
 #include "vector"
 
 
-double fitness_function(const std::vector<int *> *gene) {
-    double weight = (*gene->at(0) * 20)
-                    + (*gene->at(1) * 5)
-                    + (*gene->at(2) * 13)
-                    + (*gene->at(3) * 9)
-                    + (*gene->at(4) * 11)
-                    + (*gene->at(5) * 6)
-                    + (*gene->at(6) * 13)
-                    + (*gene->at(7) + 17)
-                    + (*gene->at(8) + 3)
-                    + (*gene->at(9) + 7);
+double fitness_function(const std::vector<int *> *genes) {
+    double weight = (*genes->at(0) * 20)
+                    + (*genes->at(1) * 5)
+                    + (*genes->at(2) * 13)
+                    + (*genes->at(3) * 9)
+                    + (*genes->at(4) * 11)
+                    + (*genes->at(5) * 6)
+                    + (*genes->at(6) * 13)
+                    + (*genes->at(7) + 17)
+                    + (*genes->at(8) + 3)
+                    + (*genes->at(9) + 7);
 
     if (weight > 40.0) {
         return 0.0;
     }
 
-    return (*gene->at(0) * 5)
-           + (*gene->at(1) * 2)
-           + (*gene->at(2) * 0.5)
-           + (*gene->at(3) * 3)
-           + (*gene->at(4) * 2.5)
-           + (*gene->at(5) * 0.75)
-           + (*gene->at(6) * 1.3)
-           + (*gene->at(7) + 2.2)
-           + (*gene->at(8) + 1.8)
-           + (*gene->at(9) + 1.5);
+    return (*genes->at(0) * 5)
+           + (*genes->at(1) * 2)
+           + (*genes->at(2) * 0.5)
+           + (*genes->at(3) * 3)
+           + (*genes->at(4) * 2.5)
+           + (*genes->at(5) * 0.75)
+           + (*genes->at(6) * 1.3)
+           + (*genes->at(7) + 2.2)
+           + (*genes->at(8) + 1.8)
+           + (*genes->at(9) + 1.5);
 }
 
 std::string to_string(const int *v) {

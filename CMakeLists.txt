@@ -11,8 +11,8 @@ OPTION(WITH_PARALLELISM "Use OpenMP for parallelization" ON)
 #set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/examples)
 SET(CMAKE_ROOT_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
-ADD_SUBDIRECTORY(src/geneticalgorithm/implementation)
-ADD_SUBDIRECTORY(src/geneticalgorithm/examples)
+ADD_SUBDIRECTORY(src/library)
+ADD_SUBDIRECTORY(src/examples)
 
 
 FIND_PACKAGE(Doxygen)

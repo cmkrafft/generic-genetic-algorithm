@@ -172,7 +172,7 @@ private:
 
         std::cout << "]" << std::endl;
 
-        std::cout << "Selection:\t\t";
+        std::cout << "Selection:\t\t\t";
 
         if (this->selection == TOURNAMENT_SELECTION) {
             std::cout << "Tournament" << std::endl;
@@ -186,17 +186,17 @@ private:
                       << std::endl;
         }
 
-        std::cout << "Crossover:\t\t";
+        std::cout << "Crossover:\t\t\t";
 
         if (crossover == SINGLE_POINT_CROSSOVER) {
             std::cout << "Single Point" << std::endl;
 
-            std::cout << "- Mode:\t\t\t"
+            std::cout << "- Mode:\t\t\t\t"
                       << (((SinglePointCrossoverConfiguration *) this->crossover_configuration)->get_mode() == FIXED
                           ? "Fixed" : "Random") << std::endl;
 
             if (((SinglePointCrossoverConfiguration *) this->crossover_configuration)->get_mode() == FIXED) {
-                std::cout << "-- Factor:\t\t"
+                std::cout << "-- Factor:\t\t\t"
                           << ((FixedMode *) ((SinglePointCrossoverConfiguration *) this->crossover_configuration)->get_single_point_crossover_configuration())->get_crossover_factor()
                           << std::endl;
             }
@@ -205,7 +205,7 @@ private:
         }
 
         std::cout << "Mutation:" << std::endl;
-        std::cout << "- Rate:\t\t\t" << mutation_configuration->get_mutation_rate() << std::endl;
+        std::cout << "- Rate:\t\t\t\t" << mutation_configuration->get_mutation_rate() << std::endl;
 
         std::cout << "-----------------------------------------------------------------------------------------------------------------" << std::endl;
     }

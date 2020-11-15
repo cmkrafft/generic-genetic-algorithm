@@ -6,13 +6,12 @@ cmake_install.cmake
 .idea/
 .DS_Store
 Makefile
-./bin/
 docs/**
 GeneticAlgorithm.cbp
-/lib/
 CMakeDoxyfile.in
 CMakeDoxygenDefaults.cmake
 install_manifest.txt
 GeneticAlgorithmLib.cbp
 Examples.cbp
 /build/
+*.bak

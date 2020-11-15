@@ -76,18 +76,18 @@ auto allele_values = const_cast<std::vector<int *> *>(
 To determine the superiority of one chromosome over another, a so called *fitness function* has to be used. It is used to calculate the fitness of each chromosome based on its characteristics, whereas a higher score is better and a negative score indicates an invalid combination of genes.
 E.g., this is what the *fitness function* of the Knapsack problem could look like:
 ```c++
-double fitness_function(const std::vector<int *> *gene) {
+double fitness_function(const std::vector<int *> *genes) {
     // Calculate the weights for each item and sum them up
-    double weight = (*gene->at(0) * 20)
-                    + (*gene->at(1) * 5)
-                    + (*gene->at(2) * 13)
-                    + (*gene->at(3) * 9)
-                    + (*gene->at(4) * 11)
-                    + (*gene->at(5) * 6)
-                    + (*gene->at(6) * 13)
-                    + (*gene->at(7) + 17)
-                    + (*gene->at(8) + 3)
-                    + (*gene->at(9) + 7);
+    double weight = (*genes->at(0) * 20)
+                    + (*genes->at(1) * 5)
+                    + (*genes->at(2) * 13)
+                    + (*genes->at(3) * 9)
+                    + (*genes->at(4) * 11)
+                    + (*genes->at(5) * 6)
+                    + (*genes->at(6) * 13)
+                    + (*genes->at(7) + 17)
+                    + (*genes->at(8) + 3)
+                    + (*genes->at(9) + 7);
 
     // Determine if the weight exceeds the weight limit and return lowest score if weight limit is exceeded
     if (weight > 40.0) {
@@ -95,16 +95,16 @@ double fitness_function(const std::vector<int *> *gene) {
     }
 
     // Calculate and return the value of the current combination of items – which is supposed to be maximized
-    return (*gene->at(0) * 5)
-           + (*gene->at(1) * 2)
-           + (*gene->at(2) * 0.5)
-           + (*gene->at(3) * 3)
-           + (*gene->at(4) * 2.5)
-           + (*gene->at(5) * 0.75)
-           + (*gene->at(6) * 1.3)
-           + (*gene->at(7) + 2.2)
-           + (*gene->at(8) + 1.8)
-           + (*gene->at(9) + 1.5);
+    return (*genes->at(0) * 5)
+           + (*genes->at(1) * 2)
+           + (*genes->at(2) * 0.5)
+           + (*genes->at(3) * 3)
+           + (*genes->at(4) * 2.5)
+           + (*genes->at(5) * 0.75)
+           + (*genes->at(6) * 1.3)
+           + (*genes->at(7) + 2.2)
+           + (*genes->at(8) + 1.8)
+           + (*genes->at(9) + 1.5);
 }
 ```
 
@@ -171,6 +171,11 @@ For more detailed code please refer to one of the examples included in this repo
 
 ## Examples
 
-Currently there are two examples included:
-* Knapsack Problem
-* Sorting ten letters
+Currently there are three examples included:
+* **Knapsack Problem (example01)**\
+  Choosing the ten most valuable items to put in a backpack without exceeding a given weight limit 
+* **Sorting ten letters (example02)**\
+  Trying to sort the first ten letters of the latin alphabet
+* **Traveling salesperson (example03)**\
+  Calculating the shortest circular route between the five major german cities without visiting one city twice
+  
