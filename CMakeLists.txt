@@ -20,7 +20,7 @@ IF (DOXYGEN_FOUND)
     ADD_CUSTOM_TARGET(
             docs ALL
 
-            COMMAND doxygen docsconf
+            COMMAND doxygen doxygen.conf
             COMMENT "Generating API documentation with Doxygen"
             VERBATIM
     )

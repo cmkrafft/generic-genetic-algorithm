@@ -1,9 +1,7 @@
 #include <iostream>
-#include <configuration/selection/tournament/TournamentSelectionConfiguration.h>
 #include <configuration/selection/proportionate/ProportionateSelectionConfiguration.h>
 #include <configuration/crossover/singlepoint/mode/FixedMode.h>
 #include <configuration/crossover/singlepoint/SinglePointCrossoverConfiguration.h>
-#include <configuration/crossover/uniform/UniformCrossoverConfiguration.h>
 #include <configuration/mutation/MutationConfiguration.h>
 #include <configuration/Configuration.h>
 #include <Population.h>
@@ -46,56 +44,41 @@ std::string to_string(const char *v) {
 }
 
 int main() {
-    auto set = const_cast<std::vector<char *> *>(new std::vector<char *>({
-                                                                                 new char('A'), new char('B'),
-                                                                                 new char('C'), new char('D'),
-                                                                                 new char('E'), new char('F'),
-                                                                                 new char('G'), new char('H'),
-                                                                                 new char('I'), new char('J'),
-                                                                         }));
+    auto allele_values = const_cast<std::vector<char *> *>(
+            new std::vector<char *>({
+                                            new char('A'), new char('B'),
+                                            new char('C'), new char('D'),
+                                            new char('E'), new char('F'),
+                                            new char('G'), new char('H'),
+                                            new char('I'), new char('J'),
+                                    }));
 
-
-    auto s = new TournamentSelectionConfiguration(2);
-    auto s2 = new ProportionateSelectionConfiguration(2);
-
-    auto cm = new FixedMode();
-    //auto cm2 = new RandomMode();
-
-    auto c = new SinglePointCrossoverConfiguration(cm);
-    auto c2 = new UniformCrossoverConfiguration();
-
-    auto m = new MutationConfiguration(0.00);
-
-    auto config = const_cast<Configuration<char> *>(new Configuration<char>(fitness_function, set, 59, 10, s2, c2, m,
-                                                                            to_string));
+    auto config = const_cast<Configuration<char> *>(
+            new Configuration<char>(fitness_function,
+                                    allele_values,
+                                    50,
+                                    10,
+                                    new ProportionateSelectionConfiguration(2),
+                                    new SinglePointCrossoverConfiguration(
+                                            new FixedMode()),
+                                    new MutationConfiguration(0.05),
+                                    to_string));
 
     auto population = new Population<char>(config);
 
-    population->populate_next_generations(100);
+    population->populate_next_generations(50);
 
     auto best_results = population->get_best();
 
-    std::cout << best_results->at(0)->to_string() << std::endl;
+    std::cout << best_results->at(0)->to_string() << ": " << best_results->at(0)->get_fitness() << std::endl;
 
     delete best_results;
-
-    auto best = population->get_best();
-
-    std::for_each(best->begin(), best->end(), [](Chromosome<char> * v) {
-        v->print();
-    });
 
     delete config;
     delete population;
 
-    delete m;
-    delete s;
-    delete s2;
-    delete c;
-    delete c2;
-
-    std::for_each(set->begin(), set->end(), [](const char *i) { delete i; });
-    delete set;
+    std::for_each(allele_values->begin(), allele_values->end(), [](const char *i) { delete i; });
+    delete allele_values;
 
     return 0;
 }

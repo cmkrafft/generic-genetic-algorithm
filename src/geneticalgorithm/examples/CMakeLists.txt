@@ -1,6 +1,6 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.16)
 
-PROJECT(Examples VERSION 0.0.1 DESCRIPTION "A generic genetic algorithm implementation")
+PROJECT(examples VERSION 0.0.1 DESCRIPTION "A generic genetic algorithm implementation")
 
 SET(CMAKE_CXX_STANDARD 20)
 SET(CMAKE_CXX_FLAGS -g)

@@ -8,9 +8,7 @@
 #include <iomanip>
 #include <cmath>
 
-ProgressBar::ProgressBar() {
-
-}
+ProgressBar::ProgressBar() = default;
 
 void ProgressBar::init(long n_size) {
     this->current_step = 0;
@@ -32,6 +30,12 @@ void ProgressBar::init(long n_size) {
 void ProgressBar::proceed(long n_steps) {
     if (this->total_steps == -1) {
         throw std::logic_error("ProgressBar must be initialized first.");
+    }
+
+    std::cout << "\r";
+
+    for (int i = 0; i < 120; i++) {
+        std::cout << " ";
     }
 
     std::cout << "\r";

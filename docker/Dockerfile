@@ -18,3 +18,8 @@ RUN rm /tmp/cmake-${CMAKE_VERSION}.tar.gz
 RUN rm -rf /var/lib/apt/lists/*
 
 RUN cmake --version
+
+RUN mkdir /workspace
+
+WORKDIR /workspace
+

@@ -29,7 +29,6 @@ public:
      * @param configuration Population configuration
      */
     explicit Population(const Configuration<T> *configuration) {
-        // TODO: Pass Seed!
         RandomNumberGenerator initial_rnd = RandomNumberGenerator();
 
         this->progress_bar = new ProgressBar();

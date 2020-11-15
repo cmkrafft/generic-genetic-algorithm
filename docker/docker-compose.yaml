@@ -1,0 +1,8 @@
+version: '3'
+services:
+  genetic-algorithm-dev-env:
+    build: .
+    image: genetic-algorithm-dev-env:latest
+    command: ["/bin/bash", "-c", "while :; do sleep 1; done"]
+    volumes:
+      - "../:/workspace"
