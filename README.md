@@ -35,7 +35,7 @@ To build and run the Dockerfile use
 ```bash
 cd docker
 docker build . -t genetic-algorithm-dev-env:latest
-ocker run -it --rm -v ../:/workspace genetic-algorithm-dev-env:latest bash
+docker run -it --rm -v ../:/workspace genetic-algorithm-dev-env:latest bash
 ```
 
 #### Docker-Compose
